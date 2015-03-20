@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		
-		<link rel="stylesheet" href="styles.css" type="text/css" />
+<!--		<link rel="stylesheet" href="styles.css" type="text/css" />-->
 	</head>
 	<body>
         
@@ -15,7 +15,36 @@
 <!-- Scripts -->
 
         <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
-		<script src="script.min.js" type="text/javascript"></script>
+<!--		<script src="script.min.js" type="text/javascript"></script>-->
+        <script>
+            function test() {
+                var Request = new XMLHttpRequest(),
+                url = 'http://api.themoviedb.org/3/',
+                mode = 'search/movie?query=',
+                movieName = '&query='+encodeURI('Fight Club'),
+                key = '&api_key=83b296315507b7ea0ccdcc536a5ab745';
+                
+                url = url + mode + key + movieName;
+
+                Request.open('GET', url);
+
+                Request.setRequestHeader('Accept', 'application/json');
+
+                Request.onreadystatechange = function () {
+                  if (this.readyState === 4) {
+                    console.log('Status:', this.status);
+                    console.log('Headers:', this.getAllResponseHeaders());
+                    console.log('Body:', this.responseText);
+                  }
+                };
+
+                Request.send(JSON.stringify($("body")));
+            }
+            
+            $(document).ready(function () {
+                test();
+            });
+        </script>
 
 <!-- Scripts - END -->
 
