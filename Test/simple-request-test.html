@@ -5,16 +5,22 @@
     <meta charset="utf-8" />
 
     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
+    <style>
+    span{
+        color: red;
+    }
+    </style>
 </head>
 
 <body>
     <script type="text/javascript">
-        var id = 0;
         (function ($) {
             
             var tmdb = 'http://api.themoviedb.org/3/',
             mode = 'movie/top_rated?',
-            page = "&page="+Math.floor((Math.random() * 5) + 1), // Dataen er delt op i "sider" (json filer), med 20 film i hver.
+            TopMovieRange = 1000, // Top 1000?
+            minimumVotes = 150,  // Minimum 150 votes (Det tager lidt tid før nyere film kommer derop.)
+            page = "&page="+Math.floor((Math.random() * (TopMovieRange/20)) + 1), // Dataen er delt op i "sider" (json filer), med 20 film i hver.
             key = '&api_key=83b296315507b7ea0ccdcc536a5ab745',
             url = tmdb+mode+page+key;
             $.getJSON(url, function (json) {
@@ -23,18 +29,15 @@
                     var randomNumber = Math.floor((Math.random() * 19) + 1),
                     voteCount = json.results[randomNumber].vote_count,
                     title = json.results[randomNumber].title,
-                    minimumVotes = 100,
-                    id = json.results[randomNumber].id;
+                    id = json.results[randomNumber].id,
+                    idAlt = json.results[randomNumber+1].id;
                     if (voteCount < minimumVotes){
                         randomMovie();
                     }else{
-                        $('#title').text(title);
-                        //$('#votes').text("Votes: "+voteCount);
-                         
+                        $('#title').text(title);                         
                         var mode = 'movie/'+id+"/credits",
-                        page = "", 
                         key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
-                        urlById = tmdb+mode+page+key;
+                        urlById = tmdb+mode+key;
                         $.getJSON(urlById, function (json) {
                             console.log(json);
                             var actor = json.cast[0].name,
@@ -42,6 +45,15 @@
                             $('#actor').text(actor);
                             $('#character').text(character);
                         });
+                        var mode = 'movie/'+idAlt+"/credits",
+                        key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
+                        urlByIdAlt = tmdb+mode+key;
+                        $.getJSON(urlByIdAlt, function (json) {
+                            console.log(json);
+                            var actorAlt = json.cast[0].name;
+                            $('#actorAlt').text(actorAlt);
+                        });
+                        
                         /*LocalStorage
                         var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
                         $("#history").text(retrivedValue);
@@ -54,8 +66,10 @@
 
         })(jQuery);
     </script>
+    <!-- Problem: Man kan ikke se køn på skuespillere... -->
     <p><span id="actor"></span> played the character "<span id="character"></span>" in the movie <span id="title"></span></p>
-
+    <p>.... not <span id="actorAlt"></span></p><br>
+    <p>Man kan ikke finde en skuespillers køn i TMDB dataen. Det gør det svært at genere forkert svar i netop dette spørgsmål.</p>
 </body>
 
 </html>
