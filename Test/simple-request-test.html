@@ -9,19 +9,34 @@
 
 <body>
     <script type="text/javascript">
+         var id = 0;
         (function ($) {
-            var imdbAPI = "http://api.themoviedb.org/3/movie/top_rated?&api_key=83b296315507b7ea0ccdcc536a5ab745";
-            $.getJSON(imdbAPI, function (json) {
+            var url = "http://api.themoviedb.org/3/movie/top_rated?&api_key=83b296315507b7ea0ccdcc536a5ab745";
+            $.getJSON(url, function (json) {
                 console.log(json);
-                var rating = json.results[Math.floor((Math.random() * 19) + 1)].title;
-                $('#input').text(rating);
+                function randomMovie(){
+                    var randomNumber = Math.floor((Math.random() * 19) + 1);
+                    var voteCount = json.results[randomNumber].vote_count;
+                    var title = json.results[randomNumber].title;
+                    if (voteCount < 100){
+                        randomMovie();
+                    }else{
+                        $('#title').text(title);
+                        $('#votes').text("Votes: "+voteCount);
+                    }
+                }
+                randomMovie();
             });
 
         })(jQuery);
     </script>
-    <div id="input">
+    <div id="title">
         
     </div>
+    <div id="votes">
+        
+    </div>
+
 </body>
 
 </html>
