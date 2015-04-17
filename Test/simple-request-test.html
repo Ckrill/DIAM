@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        (function ($) {
+            var imdbAPI = "http://api.themoviedb.org/3/movie/top_rated?&api_key=83b296315507b7ea0ccdcc536a5ab745";
+            $.getJSON(imdbAPI, function (json) {
+                console.log(json);
+                var rating = json.results[Math.floor((Math.random() * 19) + 1)].title;
+                $('#input').text(rating);
+            });
+
+        })(jQuery);
+    </script>
+    <div id="input">
+        
+    </div>
+</body>
+
+</html>
