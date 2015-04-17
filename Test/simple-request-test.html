@@ -9,49 +9,53 @@
 
 <body>
     <script type="text/javascript">
+        var id = 0;
         (function ($) {
             
-            tmdb = 'http://api.themoviedb.org/3/',
+            var tmdb = 'http://api.themoviedb.org/3/',
             mode = 'movie/top_rated?',
-            page = "&page="+Math.floor((Math.random() * 5) + 1);
-            key = '&api_key=83b296315507b7ea0ccdcc536a5ab745';
-            var url = tmdb+mode+page+key;
+            page = "&page="+Math.floor((Math.random() * 5) + 1), // Dataen er delt op i "sider" (json filer), med 20 film i hver.
+            key = '&api_key=83b296315507b7ea0ccdcc536a5ab745',
+            url = tmdb+mode+page+key;
             $.getJSON(url, function (json) {
                 console.log(json);
                 function randomMovie(){
-                    var randomNumber = Math.floor((Math.random() * 19) + 1);
-                    var voteCount = json.results[randomNumber].vote_count;
-                    var title = json.results[randomNumber].title;
-                    if (voteCount < 100){
+                    var randomNumber = Math.floor((Math.random() * 19) + 1),
+                    voteCount = json.results[randomNumber].vote_count,
+                    title = json.results[randomNumber].title,
+                    minimumVotes = 100,
+                    id = json.results[randomNumber].id;
+                    if (voteCount < minimumVotes){
                         randomMovie();
                     }else{
                         $('#title').text(title);
-                        $('#votes').text("Votes: "+voteCount);
-                        
+                        //$('#votes').text("Votes: "+voteCount);
+                         
+                        var mode = 'movie/'+id+"/credits",
+                        page = "", 
+                        key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
+                        urlById = tmdb+mode+page+key;
+                        $.getJSON(urlById, function (json) {
+                            console.log(json);
+                            var actor = json.cast[0].name,
+                            character = json.cast[0].character;
+                            $('#actor').text(actor);
+                            $('#character').text(character);
+                        });
+                        $('#url').text(urlById);
                         /*LocalStorage*/
                         //var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
                         //$("#history").text(retrivedValue);
                         //localStorage.setItem('LocalStorageKey', retrivedValue+ title);
                     }
                 }
-
                 
                 randomMovie();
-                
             });
 
         })(jQuery);
     </script>
-    <div id="title">
-        
-    </div>
-    <div id="votes">
-        
-    </div>
-    
-    <div id="history">
-        
-    </div>
+    <p><span id="actor"></span> played the character "<span id="character"></span>" in the movie <span id="title"></span></p>
 
 </body>
 
