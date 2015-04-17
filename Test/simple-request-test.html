@@ -9,9 +9,13 @@
 
 <body>
     <script type="text/javascript">
-         var id = 0;
         (function ($) {
-            var url = "http://api.themoviedb.org/3/movie/top_rated?&api_key=83b296315507b7ea0ccdcc536a5ab745";
+            
+            tmdb = 'http://api.themoviedb.org/3/',
+            mode = 'movie/top_rated?',
+            page = "&page="+Math.floor((Math.random() * 5) + 1);
+            key = '&api_key=83b296315507b7ea0ccdcc536a5ab745';
+            var url = tmdb+mode+page+key;
             $.getJSON(url, function (json) {
                 console.log(json);
                 function randomMovie(){
@@ -23,9 +27,17 @@
                     }else{
                         $('#title').text(title);
                         $('#votes').text("Votes: "+voteCount);
+                        
+                        /*LocalStorage*/
+                        //var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
+                        //$("#history").text(retrivedValue);
+                        //localStorage.setItem('LocalStorageKey', retrivedValue+ title);
                     }
                 }
+
+                
                 randomMovie();
+                
             });
 
         })(jQuery);
@@ -34,6 +46,10 @@
         
     </div>
     <div id="votes">
+        
+    </div>
+    
+    <div id="history">
         
     </div>
 
