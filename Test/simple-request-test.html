@@ -7,7 +7,7 @@
     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
     <style>
     span{
-        color: red;
+        color: red
     }
     </style>
 </head>
@@ -26,16 +26,31 @@
             $.getJSON(url, function (json) {
                 console.log(json);
                 function randomMovie(){
-                    var randomNumber = Math.floor((Math.random() * 19) + 1),
-                    voteCount = json.results[randomNumber].vote_count,
-                    title = json.results[randomNumber].title,
-                    id = json.results[randomNumber].id,
-                    idAlt = json.results[randomNumber+1].id;
+                    
+                    voteCount = json.results[[0]].vote_count,
+                    title = json.results[[0]].title,
+                    arr = [];
+                    while(arr.length < 4){
+                      var randomnumber=Math.ceil(Math.random()*18)
+                      var found=false;
+                      for(var i=0;i<arr.length;i++){
+                        if(arr[i]==randomnumber){found=true;break}
+                      }
+                      if(!found)arr[arr.length]=randomnumber;
+                    }
+                    var idMovie = json.results[arr[0]].id,
+                    voteCount = json.results[arr[0]].vote_count,
+                    title = json.results[arr[0]].title,
+                    idAltMovie1 = json.results[arr[1]].id,
+                    idAltMovie2 = json.results[arr[2]].id;
+                    if(idAltMovie1==idMovie || idAltMovie2==idMovie){
+                        randomMovie();
+                    }
                     if (voteCount < minimumVotes){
                         randomMovie();
                     }else{
                         $('#title').text(title);                         
-                        var mode = 'movie/'+id+"/credits",
+                        var mode = 'movie/'+idMovie+"/credits",
                         key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
                         urlById = tmdb+mode+key;
                         $.getJSON(urlById, function (json) {
@@ -45,7 +60,7 @@
                             $('#actor').text(actor);
                             $('#character').text(character);
                         });
-                        var mode = 'movie/'+idAlt+"/credits",
+                        var mode = 'movie/'+idAltMovie1+"/credits",
                         key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
                         urlByIdAlt = tmdb+mode+key;
                         $.getJSON(urlByIdAlt, function (json) {
@@ -53,14 +68,20 @@
                             var actorAlt = json.cast[0].name;
                             $('#actorAlt').text(actorAlt);
                         });
-                        
+                        var mode = 'movie/'+idAltMovie2+"/credits",
+                        key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
+                        urlByIdAlt2 = tmdb+mode+key;
+                        $.getJSON(urlByIdAlt2, function (json) {
+                            console.log(json);
+                            var actorAlt2 = json.cast[0].name;
+                            $('#actorAlt2').text(actorAlt2);
+                        });
                         /*LocalStorage
                         var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
                         $("#history").text(retrivedValue);
                         localStorage.setItem('LocalStorageKey', retrivedValue+ title);*/
                     }
                 }
-                
                 randomMovie();
             });
 
@@ -69,7 +90,8 @@
     <!-- Problem: Man kan ikke se køn på skuespillere... -->
     <p><span id="actor"></span> played the character "<span id="character"></span>" in the movie <span id="title"></span></p>
     <p>.... not <span id="actorAlt"></span></p><br>
-    <p>Man kan ikke finde en skuespillers køn i TMDB dataen. Det gør det svært at genere forkert svar i netop dette spørgsmål.</p>
+    <p>.... or <span id="actorAlt2"></span></p><br>
+    <p>Man kan ikke finde en skuespillers køn i TMDB dataen. Det gør det svært at generere forkert svar i netop dette spørgsmål.</p>
 </body>
 
 </html>
