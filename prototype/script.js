@@ -3,7 +3,7 @@ $( document ).ready(function() {
         var tmdb = 'http://api.themoviedb.org/3/',
         mode = 'movie/top_rated?',
         TopMovieRange = 1000, // Top 1000?
-        minimumVotes = 150,  // Minimum 150 votes (Det tager lidt tid før nyere film kommer derop.)
+        minimumVotes = 250,  // Minimum 150 votes (Det tager lidt tid før nyere film kommer derop.)
         page = "&page="+Math.floor((Math.random() * (TopMovieRange/20)) + 1), // Dataen er delt op i "sider" (json filer), med 20 film i hver.
         key = '&api_key=83b296315507b7ea0ccdcc536a5ab745',
         url = tmdb+mode+page+key;
@@ -49,6 +49,12 @@ $( document ).ready(function() {
                             $('#left').addClass("1");
                             $('#right').removeClass("1");
                         }
+                        if(character.indexOf("(voice)") >= 0){
+                            $("body").addClass("voice");
+                            var character = character.replace(" (voice)", "");
+                        }else{
+                            $("body").removeClass("voice");
+                        }
                         $('#character').text(character);
                     });
                     var mode = 'movie/'+idAltMovie+"/credits",
@@ -85,16 +91,9 @@ function timer()
   if (count < 0)
   {
      clearInterval(counter);
-     var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
-     if(score >= retrivedValue){
-        localStorage.setItem('LocalStorageKey', score);
-        var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
-        alert("NY HIGHSCORE!! Din highscore er "+retrivedValue);
-     }else{
-         alert("Din highscore er "+retrivedValue);
-     }
+     saveScore();
      location.reload();
-     return;
+     
   }
 document.getElementById("time").innerHTML=count + " secs";
 }
@@ -105,5 +104,12 @@ function scoreCounter(){
     document.getElementById("score").innerHTML=score+"";
 }
 function saveScore(){
-    
+    var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
+    if(score >= retrivedValue){
+        localStorage.setItem('LocalStorageKey', score);
+        var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
+        //alert("NY HIGHSCORE!! Din highscore er "+retrivedValue);
+    }else{
+        //alert("Din highscore er "+retrivedValue);
+    }
 }

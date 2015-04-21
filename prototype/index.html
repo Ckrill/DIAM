@@ -12,14 +12,23 @@
     span{
         color: red
     }
+    .voiced{
+        display: none;
+    }
+    .voice .voiced{
+            display: inline;    
+    }
+    .voice .played{
+        display: none; 
+    }
     </style>
 </head>
 
 <body>
-    <p id="time"></p>
+    <p id="time">60 secs</p>
     <p><span id="score">0</span><span> point</span></p>
     <!-- Problem: Man kan ikke se køn på skuespillere... -->
-    <p>Who played the character "<span id="character"></span>" in the movie <span id="title"></span> (Year?)</p>
+    <p>Who <span class="played">played</span><span class="voiced">voiced</span> the character "<span id="character"></span>" in the movie <span id="title"></span>?</p>
     <p><span id="right"></span></p><br>
     <p><span id="left"></span></p><br>
 </body>
