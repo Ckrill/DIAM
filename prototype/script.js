@@ -108,8 +108,8 @@ function saveScore(){
     if(score >= retrivedValue){
         localStorage.setItem('LocalStorageKey', score);
         var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
-        //alert("NY HIGHSCORE!! Din highscore er "+retrivedValue);
+        alert("NY HIGHSCORE!! Din highscore er "+retrivedValue);
     }else{
-        //alert("Din highscore er "+retrivedValue);
+        alert("Din highscore er "+retrivedValue);
     }
 }
