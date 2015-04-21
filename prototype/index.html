@@ -21,6 +21,17 @@
     .voice .played{
         display: none; 
     }
+    .whichMovieparagraf{
+        display: none;   
+    }
+    .whichMovie .whichMovieparagraf {
+        display: block;
+    }
+    .whichMovie .whichActorparagraf {
+        display: none;
+    }
+    
+    
     </style>
 </head>
 
@@ -28,9 +39,10 @@
     <p id="time">60 secs</p>
     <p><span id="score">0</span><span> point</span></p>
     <!-- Problem: Man kan ikke se køn på skuespillere... -->
-    <p>Who <span class="played">played</span><span class="voiced">voiced</span> the character "<span id="character"></span>" in the movie <span id="title"></span>?</p>
-    <p><span id="right"></span></p><br>
-    <p><span id="left"></span></p><br>
+    <p class="whichActorparagraf">Who <span class="played">played</span><span class="voiced">voiced</span> the character "<span id="character"></span>" in the movie <span id="title"></span>?</p>
+    <p class="whichMovieparagraf">When was <span id="releaseTitle"></span> released?</p>
+    <p><span id="right"></span></p>
+    <p><span id="left"></span></p>
 </body>
 
 </html>
