@@ -230,8 +230,6 @@ function answerChecker() {
     // Check on slide
     $('.slide-container').on('swipe', function(event, slick){
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
-        
-        
         if (currentSlide != 1) { // only run if page is not the middle one, this is to prevent it from running twice, and to prevent it from running you cancel a drag
             showFeedback();
             var correctAnswer = $("." + correctAnswerClass).closest();
@@ -250,6 +248,9 @@ function answerChecker() {
                 $("body").addClass("falseBg").removeClass("correctBg");
             }
             $('.slide-container').on('afterChange', function(event, slick){
+                    //Denne function kører nogle gange flere gange... 
+                    // Kører også når man drager uden at slide...
+
                 hideFeedback();
             });
             questionType();
@@ -259,10 +260,10 @@ function answerChecker() {
 function showFeedback() {
     $("body").addClass("answered"); // Måske unødvendig?
 }
-function hideFeedback() {
-    $(".slick-active > *").hide();
+function hideFeedback() {    // 
+    $("div[data-slick-index='1'] > *").hide();
     $("body").removeClass("answered"); // Måske unødvendig?
-    $(".slick-active > *").fadeIn(300);
+    $("div[data-slick-index='1'] > *").fadeIn();
 }
 
 $(document).ready(function () {
