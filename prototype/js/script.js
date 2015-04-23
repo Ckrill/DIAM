@@ -2,7 +2,7 @@
 var correctAnswerClass = "correct",
     falseAnswerClass = "false",
 
-// Database variables
+// json variables
 tmdb = 'http://api.themoviedb.org/3/',
 key = '&api_key=83b296315507b7ea0ccdcc536a5ab745',
 flag = 0;
@@ -143,12 +143,12 @@ function scoreCounter(){
 
 function saveScore(){
     var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
-    if (score >= retrivedValue) {
+    if (score > retrivedValue) {
         localStorage.setItem('LocalStorageKey', score);
         var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
-        console.log("NY HIGHSCORE!! Din highscore er "+retrivedValue);
+        $("#popupscore").text("New highscore: "+retrivedValue+".");
     } else {
-        console.log("Din highscore er "+retrivedValue);
+        $("#popupscore").text("You got "+score+" pts. You're highscore is "+retrivedValue+".");
     }
 }
 
@@ -192,6 +192,7 @@ $("#DateCountdown").TimeCircles({
     "animation": "smooth",
     "bg_width": 1.2,
     "fg_width": 0.1,
+    count_past_zero: false,
     "circle_bg_color": "rgba(0, 0, 0, .0)",
     "time": {
         "Days": {
@@ -201,8 +202,7 @@ $("#DateCountdown").TimeCircles({
             "show": false
         },
         "Minutes": {
-//            "show": false
-            "show": true
+            "show": false
         },
         "Seconds": {
             "text": "",
@@ -213,20 +213,17 @@ $("#DateCountdown").TimeCircles({
     }
     }).addListener(function(unit, amount, total){
         if(total == 0) {
+            
             saveScore();
-            location.reload();
+            $(".overlay").fadeIn();
+            $("#closeOverlay").click(function(){
+                location.reload();
+            });
         }
     });
 }
 function answerChecker() {
-    // Check on click
-//    $(".right, .left").unbind().click(function() {
-//        if ($(this).children("p").hasClass(correctAnswerClass)) {
-//            scoreCounter();
-//        }
-//        questionType();
-//    });
-    
+
     // Check on slide
     $('.slide-container').on('swipe', function(event, slick){
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");

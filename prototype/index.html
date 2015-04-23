@@ -27,7 +27,7 @@
                 </div>
                 <div class="page">
                     <div class="question">
-                        <p><span id="score">0</span><span> pts</span></p>
+                        
                         <p class="whichActorparagraf">Who <span class="played">played</span><span class="voiced">voiced</span> '<span id="character"></span>' in '<span id="title"></span>'?</p>
                         <p class="whichMovieparagraf">When was <span id="releaseTitle"></span> released?</p>
                     </div>
@@ -48,7 +48,15 @@
                     </div>
                 </div>
             </div>
-            <div id="DateCountdown" data-timer="500" style="width: 10%;"></div>
+            <div class="score"><span id="score">0</span><span> pts</span></div>
+            <div id="DateCountdown" data-timer="60" style="width: 70px;"></div>
+        </div>
+        <div class="overlay">
+            <div class="popup">
+                <p>Game Over Man, GAME OVER!</p> <!-- Reference til Aliens -->
+                <p id="popupscore"></p>
+                <p id="closeOverlay">Play again</p>
+            </div>
         </div>
     </body>
 </html>

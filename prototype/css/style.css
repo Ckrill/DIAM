@@ -2,6 +2,9 @@
 @import url("slick.css");
 @import url("icons.css");
 
+*{
+    box-sizing: border-box;
+}
 html{
     font-size: 10px; /* Makes it easier to calculate from em to px */
 }
@@ -37,6 +40,7 @@ body {
     width: 100%;
     height: 30%;
     text-align: center;
+    padding-top: 50px;
     
     display: flex;
     flex-direction: column;
@@ -71,12 +75,13 @@ body {
 }
 .answer p {
     margin: 3rem;
-    font-size: 1.5em;
+    word-spacing: 30000px; /* Forced word-wrap fix */
+    font-size: 2em;
 }
 
 .left {
 }
-.left p:before {
+.left:before {
     font-family: 'icomoon';
     content: "\e600";
     font-size: 2em;
@@ -87,7 +92,7 @@ body {
 
 .right {
 }
-.right p:after{
+.right:before{
     font-family: 'icomoon';
     content: "\e601";
     font-size: 2em;
@@ -118,7 +123,6 @@ body {
 /* Countdown timer */
 #DateCountdown{
     position: fixed;
-    width: 10%;
     top: 0;
     right: 0;
 }
@@ -142,9 +146,37 @@ body {
 .whichMovie .whichActorparagraf {
     display: none;
 }
-
-.textDiv_Seconds span {
-    color: #333;
-    position: relative;
-    top: 2px;
+.score{
+    font-family: 'Century Gothic', Arial;
+    font-weight: bold;
+    font-size: 2.5em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 13px;
+}
+.score #score + span{
+    font-size: 0.5em;
+    font-weight: 300;
+}
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+}
+.popup{
+    position: absolute;
+    top:calc(50% - 150px);
+    left: calc(50% - 150px);
+    background: white;
+    width: 300px;
+    height: 300px;
+    padding: 15px;
+    font-size: 2em;
+    text-align: center;   
+}
+#popupscore{
+    font-size: 0.8em;
 }
