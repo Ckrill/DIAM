@@ -14,6 +14,14 @@ body {
     width: 100%;
     background-color: skyblue;
 }
+.slide-container {
+    background-color: indianred;
+}
+.page {
+    background-color: gold;
+}
+
+/* Question */
 .question {
     background-color: gold;
     position: relative;
@@ -33,6 +41,9 @@ body {
     font-style: italic;
     font-family: monospace;
 }
+/* Question - END */
+
+/* Answer */
 .answers {
     background-color: lightgreen;
     position: relative;
@@ -63,13 +74,9 @@ body {
 .right {
     background-color: cadetblue;
 }
+/* Answer - END */
 
-.slide-container {
-    background-color: indianred;
-}
-.page {
-    background-color: gold;
-}
+/* Feedback */
 .feedback {
     font-size: 3em;
     position: relative;
@@ -87,15 +94,22 @@ body {
 .false {
     background-color: #e74c3c;
 }
+/* Feedback - END */
 
-span{
-    color: red
+/* Countdown timer */
+#DateCountdown{
+    position: fixed;
+    width: 10%;
+    top: 0;
+    right: 0;
 }
+/* Countdown timer - END */
+
 .voiced{
     display: none;
 }
 .voice .voiced{
-        display: inline;    
+    display: inline;    
 }
 .voice .played{
     display: none; 
@@ -109,12 +123,7 @@ span{
 .whichMovie .whichActorparagraf {
     display: none;
 }
-#DateCountdown{
-    position: fixed;
-    width: 10%;
-    top: 0;
-    right: 0;
-}
+
 .textDiv_Seconds span {
     color: #333;
     position: relative;
