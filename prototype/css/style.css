@@ -12,18 +12,23 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: skyblue;
 }
 .slide-container {
-    background-color: indianred;
+    background-color: gold;
+    -webkit-transition: background 0.4s; /* Safari */
+    transition: background 0.4s;
+}
+.falseBg .slide-container {
+    background: #e74c3c;
+}
+.correctBg .slide-container {
+    background: #2ecc71;;
 }
 .page {
-    background-color: gold;
 }
 
 /* Question */
 .question {
-    background-color: gold;
     position: relative;
     width: 100%;
     height: 30%;
@@ -43,7 +48,6 @@ body {
 
 /* Answer */
 .answers {
-    background-color: lightgreen;
     position: relative;
     width: 100%;
     height: 70%
@@ -67,7 +71,6 @@ body {
 }
 
 .left {
-    background-color: #f1c40f;
 }
 .left p:before {
     font-family: 'icomoon';
@@ -79,7 +82,6 @@ body {
 }
 
 .right {
-    background-color: #f1c40f;
 }
 .right p:after{
     font-family: 'icomoon';
@@ -104,10 +106,8 @@ body {
     justify-content: center;
 }
 .answered .correct {
-    background-color: #2ecc71;
 }
 .answered .false {
-    background-color: #e74c3c;
 }
 /* Feedback - END */
 

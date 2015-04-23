@@ -245,6 +245,9 @@ function answerChecker() {
 
             if (currentSlide === correctAnswer) {
                 scoreCounter();
+                $("body").addClass("correctBg").removeClass("falseBg");
+            }else{
+                $("body").addClass("falseBg").removeClass("correctBg");
             }
             $('.slide-container').on('afterChange', function(event, slick){
                 hideFeedback();
@@ -254,10 +257,12 @@ function answerChecker() {
     });
 }
 function showFeedback() {
-    $("body").addClass("answered");
+    $("body").addClass("answered"); // Måske unødvendig?
 }
 function hideFeedback() {
-    $("body").removeClass("answered");
+    $(".slick-active > *").hide();
+    $("body").removeClass("answered"); // Måske unødvendig?
+    $(".slick-active > *").fadeIn(300);
 }
 
 $(document).ready(function () {
