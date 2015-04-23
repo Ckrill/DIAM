@@ -1,5 +1,6 @@
 @import url("timeCircles.css");
 @import url("slick.css");
+@import url("icons.css");
 
 body {
     font-family: 'Source Sans Pro', sans-serif;
@@ -37,8 +38,6 @@ body {
     font-size: 2em;
 }
 .question span {
-    font-style: italic;
-    font-family: monospace;
 }
 /* Question - END */
 
@@ -70,9 +69,25 @@ body {
 .left {
     background-color: coral;
 }
+.left p:before {
+    font-family: 'icomoon';
+    content: "\e600";
+    font-size: 2em;
+    position: relative;
+    top: 13px;
+    padding: 10px;
+}
 
 .right {
     background-color: cadetblue;
+}
+.right p:after{
+    font-family: 'icomoon';
+    content: "\e601";
+    font-size: 2em;
+    position: relative;
+    top: 13px;
+    padding: 10px;
 }
 /* Answer - END */
 
