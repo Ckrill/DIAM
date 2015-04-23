@@ -214,12 +214,12 @@ $("#DateCountdown").TimeCircles({
 }
 function answerChecker() {
     // Check on click
-    $(".right, .left").unbind().click(function() {
-        if ($(this).children("p").hasClass(correctAnswerClass)) {
-            scoreCounter();
-        }
-        questionType();
-    });
+//    $(".right, .left").unbind().click(function() {
+//        if ($(this).children("p").hasClass(correctAnswerClass)) {
+//            scoreCounter();
+//        }
+//        questionType();
+//    });
     
     // Check on slide
     $('.slide-container').on('afterChange', function(event, slick){
