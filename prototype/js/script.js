@@ -227,6 +227,36 @@ function resetSliderPage() {
         }
     });
 }
+function timer() {
+$("#DateCountdown").TimeCircles({
+        "animation": "smooth",
+        "bg_width": 1.2,
+        "fg_width": 0.1,
+        "circle_bg_color": "#fff",
+        "time": {
+            "Days": {
+                "show": false
+            },
+            "Hours": {
+                "show": false
+            },
+            "Minutes": {
+                "show": false
+            },
+            "Seconds": {
+                "text": "",
+                "color": "#333",
+                "show": true
+            }
+            
+        }
+    }).addListener(function(unit, amount, total){
+        if(total == 0) {
+            saveScore();
+            location.reload();
+        }
+    });
+}
 
 
 var flag = 0;
