@@ -20,7 +20,7 @@ function whichActor(){
     $("body").removeClass("whichMovie");
     var mode = 'movie/top_rated?',
     TopMovieRange = 1000, // Top 1000?
-    minimumVotes = 250,  // Minimum 150 votes (Det tager lidt tid før nyere film kommer derop.)
+    minimumVotes = 200,  // Minimum 150 votes (Det tager lidt tid før nyere film kommer derop.)
     page = "&page="+Math.floor((Math.random() * (TopMovieRange/20)) + 1), // Dataen er delt op i "sider" (json filer), med 20 film i hver.
     url = tmdb+mode+page+key;
     $.getJSON(url, function (json) {
@@ -30,7 +30,7 @@ function whichActor(){
             title = json.results[[0]].title,
             arr = [];
             while(arr.length < 2){
-              var randomNumber = Math.ceil(Math.random() * 18);
+              var randomNumber = Math.ceil(Math.random() * 19); // hmmm
               var found = false;
               for (var i = 0;i<arr.length;i++) {
                 if (arr[i] == randomNumber){found = true;break}
@@ -148,7 +148,7 @@ function saveScore(){
         var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
         $("#popupscore").text("New highscore: "+retrivedValue+".");
     } else {
-        $("#popupscore").text("You got "+score+" pts. You're highscore is "+retrivedValue+".");
+        $("#popupscore").text("You got "+score+" pts. Your highscore is "+retrivedValue+".");
     }
 }
 
