@@ -1,4 +1,8 @@
-var tmdb = 'http://api.themoviedb.org/3/',
+// Options
+var correctAnswerClass = "correct",
+
+// Database variables
+tmdb = 'http://api.themoviedb.org/3/',
 key = '&api_key=83b296315507b7ea0ccdcc536a5ab745',
 flag = 0;
 function questionType(){
@@ -20,27 +24,27 @@ function whichActor(){
     url = tmdb+mode+page+key;
     $.getJSON(url, function (json) {
         console.log(json);
-        function randomMovie(){
+        function randomMovie() {
             voteCount = json.results[[0]].vote_count,
             title = json.results[[0]].title,
             arr = [];
             while(arr.length < 2){
-              var randomNumber=Math.ceil(Math.random()*18);
-              var found=false;
-              for(var i=0;i<arr.length;i++){
-                if(arr[i]==randomNumber){found=true;break}
+              var randomNumber = Math.ceil(Math.random() * 18);
+              var found = false;
+              for (var i = 0;i<arr.length;i++) {
+                if (arr[i] == randomNumber){found = true;break}
               }
-              if(!found)arr[arr.length]=randomNumber;
+              if (!found)arr[arr.length] = randomNumber;
             }
             var idMovie = json.results[arr[0]].id,
             voteCount = json.results[arr[0]].vote_count,
             title = json.results[arr[0]].title,
             idAltMovie = json.results[arr[1]].id;
 
-            if (voteCount < minimumVotes){
+            if (voteCount < minimumVotes) {
                 randomMovie();
                 return;
-            }else{
+            } else {
                 var randomNumber = Math.round(Math.random());
                 $('#title').text(title);                         
                 var mode = 'movie/'+idMovie+"/credits",
@@ -50,18 +54,18 @@ function whichActor(){
                     console.log(json);
                     var actor = json.cast[0].name,
                     character = json.cast[0].character;
-                    if (randomNumber == 0){
-                        $('#right').text(actor).addClass("1");
-                        $('#left').removeClass("1");
+                    if (randomNumber == 0) {
+                        $('.right p').text(actor).addClass(correctAnswerClass);
+                        $('.left p').removeClass(correctAnswerClass);
 
-                    }else{
-                        $('#left').text(actor).addClass("1");
-                        $('#right').removeClass("1");
+                    } else {
+                        $('.left p').text(actor).addClass(correctAnswerClass);
+                        $('.right p').removeClass(correctAnswerClass);
                     }
-                    if(character.indexOf("(voice)") >= 0){
+                    if (character.indexOf("(voice)") >= 0) {
                         $("body").addClass("voice");
                         var character = character.replace(" (voice)", "");
-                    }else{
+                    } else {
                         $("body").removeClass("voice");
                     }
                     $('#character').text(character);
@@ -71,10 +75,10 @@ function whichActor(){
                 $.getJSON(urlByIdAlt, function (json) {
                     console.log(json);
                     var actorAlt = json.cast[0].name;
-                    if (randomNumber == 1){
-                        $('#right').text(actorAlt);
-                    }else{
-                        $('#left').text(actorAlt);
+                    if (randomNumber == 1) {
+                        $('.right p').text(actorAlt);
+                    } else {
+                        $('.left p').text(actorAlt);
                     }
                     return;
                 });
@@ -89,7 +93,7 @@ function whichMovie(){
     var mode = 'discover/movie?',
     page = '&page=1',
     currentYear = new Date().getFullYear(),
-    year = Math.floor(Math.random()*(currentYear-(currentYear-20)+1)+(currentYear-20)),
+    year = Math.floor(Math.random() * (currentYear - (currentYear - 20) + 1) + (currentYear - 20)),
     query = "&primary_release_year="+year+".desc&sort_by=popularity.desc", // Dataen er delt op i "sider" (json filer), med 20 film i hver.    
     urlMovie = tmdb+mode+page+key+query;
     $.getJSON(urlMovie, function (json) {
@@ -98,31 +102,28 @@ function whichMovie(){
         var title = json.results[randomNumber].title,
         range = 1,
         yearAlt = (Math.round(Math.random()) * 2 - 1);
-        if (year == currentYear){
-            yearAlt = year-range;
-        }
-        else if (year>currentYear-3){
-            yearAlt = year+yearAlt;
-        }
-        else if ((year<currentYear-3) && (year>currentYear-12)){
+        if (year == currentYear) {
+            yearAlt = year - range;
+        } else if (year > currentYear - 3) {
+            yearAlt = year + yearAlt;
+        } else if ((year<currentYear - 3) && (year > currentYear - 12)){
             range = 2;
             yearAlt = year+(yearAlt*range);
-        }
-        else{
+        } else {
             range = 3;
             yearAlt = year+(yearAlt*range);
         }
-        if (randomNumber == 0){
-            $('#right').text(yearAlt);
-            $('#left').text(year);
-            $('#left').addClass("1");
-            $('#right').removeClass("1");
+        if (randomNumber == 0) {
+            $('.right p').text(yearAlt);
+            $('.left p').text(year);
+            $('.left p').addClass(correctAnswerClass);
+            $('.right p').removeClass(correctAnswerClass);
 
-        }else{
-            $('#left').text(yearAlt);
-            $('#right').text(year);
-            $('#right').addClass("1");
-            $('#left').removeClass("1");
+        } else {
+            $('.left p').text(yearAlt);
+            $('.right p').text(year);
+            $('.right p').addClass(correctAnswerClass);
+            $('.left p').removeClass(correctAnswerClass);
         }
         $('#releaseTitle').text(title);
     });
@@ -130,21 +131,22 @@ function whichMovie(){
 
 var score = 0;
 function scoreCounter(){
-    score = score+1;
+    score = score + 1;
     $("#score").text(score);
 }
 
 function saveScore(){
     var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
-    if(score >= retrivedValue){
+    if (score >= retrivedValue) {
         localStorage.setItem('LocalStorageKey', score);
         var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
         console.log("NY HIGHSCORE!! Din highscore er "+retrivedValue);
-    }else{
+    } else {
         console.log("Din highscore er "+retrivedValue);
     }
 }
 
+// Initiate slider
 function initiateSlide() {
     $('.slide-container').slick({
         initialSlide: 1,
@@ -152,13 +154,17 @@ function initiateSlide() {
         infinite: false
     });
 }
+// Initiate slider - END
 
+// Set height of Slider
 function setSlideHeight() {
     var windowHeight = $(window).height();
     console.log(windowHeight);
     $(".page").css("height", windowHeight + "px");
 }
+// Set height of Slider - END
 
+// Return slider to middle page
 function resetSliderPage() {
     $('.slide-container').on('afterChange', function(event, slick, direction){
         console.log("Direction: " + direction);
@@ -173,13 +179,14 @@ function resetSliderPage() {
         }
     });
 }
+// Return slider to middle page - END
 
 function timer() {
 $("#DateCountdown").TimeCircles({
     "animation": "smooth",
     "bg_width": 1.2,
     "fg_width": 0.1,
-    "circle_bg_color": "#fff",
+    "circle_bg_color": "rgba(0, 0, 0, .0)",
     "time": {
         "Days": {
             "show": false
@@ -188,7 +195,8 @@ $("#DateCountdown").TimeCircles({
             "show": false
         },
         "Minutes": {
-            "show": false
+//            "show": false
+            "show": true
         },
         "Seconds": {
             "text": "",
@@ -205,8 +213,28 @@ $("#DateCountdown").TimeCircles({
     });
 }
 function answerChecker() {
-    $("#right, #left").unbind().click(function() {
-        if ($(this).hasClass("1")) {
+    // Check on click
+    $(".right, .left").unbind().click(function() {
+        if ($(this).children("p").hasClass(correctAnswerClass)) {
+            scoreCounter();
+        }
+        questionType();
+    });
+    
+    // Check on slide
+    $('.slide-container').on('afterChange', function(event, slick){
+        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+        
+        var correctAnswer = $("." + correctAnswerClass).closest();
+        if($("." + correctAnswerClass).closest("div").hasClass("left")){
+            correctAnswer = 0;
+            console.log(correctAnswer);
+        } else if($("." + correctAnswerClass).closest("div").hasClass("right")){
+            correctAnswer = 2;
+            console.log(correctAnswer);
+        }
+        
+        if (currentSlide === correctAnswer) {
             scoreCounter();
         }
         questionType();
