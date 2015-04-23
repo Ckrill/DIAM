@@ -607,6 +607,7 @@
 
             // line color
             this.data.attributes.context.strokeStyle = this.config.circle_bg_color;
+            
             this.data.attributes.context.stroke();
         }
 
