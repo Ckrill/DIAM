@@ -67,7 +67,7 @@ body {
 }
 
 .left {
-    background-color: coral;
+    background-color: #f1c40f;
 }
 .left p:before {
     font-family: 'icomoon';
@@ -79,7 +79,7 @@ body {
 }
 
 .right {
-    background-color: cadetblue;
+    background-color: #f1c40f;
 }
 .right p:after{
     font-family: 'icomoon';
@@ -103,10 +103,10 @@ body {
     flex-direction: column;
     justify-content: center;
 }
-.correct {
+.answered .correct {
     background-color: #2ecc71;
 }
-.false {
+.answered .false {
     background-color: #e74c3c;
 }
 /* Feedback - END */

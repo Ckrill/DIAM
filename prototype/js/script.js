@@ -1,5 +1,6 @@
 // Options
 var correctAnswerClass = "correct",
+    falseAnswerClass = "false",
 
 // Database variables
 tmdb = 'http://api.themoviedb.org/3/',
@@ -54,13 +55,19 @@ function whichActor(){
                     console.log(json);
                     var actor = json.cast[0].name,
                     character = json.cast[0].character;
+                    $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback').removeClass(correctAnswerClass);
+                    $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback').removeClass(falseAnswerClass);
                     if (randomNumber == 0) {
                         $('.right p').text(actor).addClass(correctAnswerClass);
                         $('.left p').removeClass(correctAnswerClass);
+                        $('.slide-container .pageRight .feedback').addClass(correctAnswerClass);
+                        $('.slide-container .pageLeft .feedback').addClass(falseAnswerClass);
 
                     } else {
                         $('.left p').text(actor).addClass(correctAnswerClass);
                         $('.right p').removeClass(correctAnswerClass);
+                        $('.slide-container .pageLeft .feedback').addClass(correctAnswerClass);
+                        $('.slide-container .pageRight .feedback').addClass(falseAnswerClass);
                     }
                     if (character.indexOf("(voice)") >= 0) {
                         $("body").addClass("voice");
@@ -118,7 +125,6 @@ function whichMovie(){
             $('.left p').text(year);
             $('.left p').addClass(correctAnswerClass);
             $('.right p').removeClass(correctAnswerClass);
-
         } else {
             $('.left p').text(yearAlt);
             $('.right p').text(year);
@@ -222,11 +228,12 @@ function answerChecker() {
 //    });
     
     // Check on slide
-    $('.slide-container').on('afterChange', function(event, slick){
+    $('.slide-container').on('swipe', function(event, slick){
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         
         
         if (currentSlide != 1) { // only run if page is not the middle one, this is to prevent it from running twice, and to prevent it from running you cancel a drag
+            showFeedback();
             var correctAnswer = $("." + correctAnswerClass).closest();
             if($("." + correctAnswerClass).closest("div").hasClass("left")){
                 correctAnswer = 0;
@@ -239,9 +246,18 @@ function answerChecker() {
             if (currentSlide === correctAnswer) {
                 scoreCounter();
             }
+            $('.slide-container').on('afterChange', function(event, slick){
+                hideFeedback();
+            });
             questionType();
         }
     });
+}
+function showFeedback() {
+    $("body").addClass("answered");
+}
+function hideFeedback() {
+    $("body").removeClass("answered");
 }
 
 $(document).ready(function () {
