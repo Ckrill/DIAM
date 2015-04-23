@@ -225,19 +225,22 @@ function answerChecker() {
     $('.slide-container').on('afterChange', function(event, slick){
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         
-        var correctAnswer = $("." + correctAnswerClass).closest();
-        if($("." + correctAnswerClass).closest("div").hasClass("left")){
-            correctAnswer = 0;
-            console.log(correctAnswer);
-        } else if($("." + correctAnswerClass).closest("div").hasClass("right")){
-            correctAnswer = 2;
-            console.log(correctAnswer);
-        }
         
-        if (currentSlide === correctAnswer) {
-            scoreCounter();
+        if (currentSlide != 1) { // only run if page is not the middle one, this is to prevent it from running twice, and to prevent it from running you cancel a drag
+            var correctAnswer = $("." + correctAnswerClass).closest();
+            if($("." + correctAnswerClass).closest("div").hasClass("left")){
+                correctAnswer = 0;
+                console.log(correctAnswer);
+            } else if($("." + correctAnswerClass).closest("div").hasClass("right")){
+                correctAnswer = 2;
+                console.log(correctAnswer);
+            }
+
+            if (currentSlide === correctAnswer) {
+                scoreCounter();
+            }
+            questionType();
         }
-        questionType();
     });
 }
 
