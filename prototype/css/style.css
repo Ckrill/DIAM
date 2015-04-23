@@ -1,0 +1,122 @@
+@import url("timeCircles.css");
+@import url("slick.css");
+
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    
+    font-family: sans-serif;
+}
+.wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: skyblue;
+}
+.question {
+    background-color: gold;
+    position: relative;
+    width: 100%;
+    height: 30%;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.question p {
+    margin: 3rem;
+    font-size: 2em;
+}
+.question span {
+    font-style: italic;
+    font-family: monospace;
+}
+.answers {
+    background-color: lightgreen;
+    position: relative;
+    width: 100%;
+    height: 70%
+}
+
+.answer {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.answer p {
+    margin: 3rem;
+    font-size: 1.5em;
+}
+
+.left {
+    background-color: coral;
+}
+
+.right {
+    background-color: cadetblue;
+}
+
+.slide-container {
+    background-color: indianred;
+}
+.page {
+    background-color: gold;
+}
+.feedback {
+    font-size: 3em;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.correct {
+    background-color: #2ecc71;
+}
+.false {
+    background-color: #e74c3c;
+}
+
+span{
+    color: red
+}
+.voiced{
+    display: none;
+}
+.voice .voiced{
+        display: inline;    
+}
+.voice .played{
+    display: none; 
+}
+.whichMovieparagraf{
+    display: none;   
+}
+.whichMovie .whichMovieparagraf {
+    display: block;
+}
+.whichMovie .whichActorparagraf {
+    display: none;
+}
+#DateCountdown{
+    position: fixed;
+    width: 10%;
+    top: 0;
+    right: 0;
+}
+.textDiv_Seconds span {
+    color: #333;
+    position: relative;
+    top: 2px;
+}

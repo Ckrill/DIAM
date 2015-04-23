@@ -1,4 +1,34 @@
+
 $( document ).ready(function() {
+    $("#DateCountdown").TimeCircles({
+        "animation": "smooth",
+        "bg_width": 1.2,
+        "fg_width": 0.1,
+        "circle_bg_color": "#fff",
+        "time": {
+            "Days": {
+                "show": false
+            },
+            "Hours": {
+                "show": false
+            },
+            "Minutes": {
+                "show": false
+            },
+            "Seconds": {
+                "text": "",
+                "color": "#333",
+                "show": true
+            }
+            
+        }
+    }).addListener(function(unit, amount, total){
+        if(total == 0) {
+            saveScore();
+            location.reload();
+        }
+    });
+
     function whichActor(){
         $("body").removeClass("whichMovie");
         var tmdb = 'http://api.themoviedb.org/3/',
@@ -150,20 +180,6 @@ $( document ).ready(function() {
     
     questionType();
 });
-var count=60;
-var counter=setInterval(timer, 1000); //1000 will  run it every 1 second
-function timer()
-{
-  count=count-1;
-  if (count < 0)
-  {
-     clearInterval(counter);
-     saveScore();
-     location.reload();
-     
-  }
-document.getElementById("time").innerHTML=count + " secs";
-}
 
 var score = 0;
 function scoreCounter(){
@@ -182,9 +198,55 @@ function saveScore(){
 }
 
 
-var flag = 0;
-// Mest indtjenende i 2010 
-// http://api.themoviedb.org/3/discover/movie?api_key=83b296315507b7ea0ccdcc536a5ab745&primary_release_year=2010.desc&sort_by=revenue.desc
 
-// År
-// http://api.themoviedb.org/3/discover/movie?api_key=83b296315507b7ea0ccdcc536a5ab745&primary_release_year=2000.desc&sort_by=popularity.desc
+function initiateSlide() {
+    $('.slide-container').slick({
+        initialSlide: 1,
+        arrows: false,
+        infinite: false
+    });
+}
+
+function setSlideHeight() {
+    var windowHeight = $(window).height();
+    console.log(windowHeight);
+    $(".page").css("height", windowHeight + "px");
+}
+
+function resetSliderPage() {
+    $('.slide-container').on('afterChange', function(event, slick, direction){
+        console.log("Direction: " + direction);
+        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+        if (currentSlide != 1) {
+            setTimeout(function() {
+                $('.slide-container').slick("slickSetOption", "speed", "0");
+                $('.slide-container').slick("slickGoTo", 1);
+                $('.slide-container').slick("slickSetOption", "speed", "300");
+                console.log("Going back to the middle slide!");
+            }, 100);
+        }
+    });
+}
+
+
+var flag = 0;
+
+$(document).ready(function () {
+    initiateSlide();
+    setSlideHeight();
+    resetSliderPage();
+});
+
+// Ready - END
+
+// Scroll
+$(window).scroll(function () {
+});
+// Scroll - END
+
+
+// Resize
+$(window).resize(function () {
+    setSlideHeight();
+});
+//Resize - END
