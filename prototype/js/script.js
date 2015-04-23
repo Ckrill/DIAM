@@ -1,3 +1,6 @@
+var tmdb = 'http://api.themoviedb.org/3/',
+key = '&api_key=83b296315507b7ea0ccdcc536a5ab745',
+flag = 0;
 function questionType(){
     flag = flag+1;
     if (flag>3){
@@ -10,12 +13,10 @@ function questionType(){
 
 function whichActor(){
     $("body").removeClass("whichMovie");
-    var tmdb = 'http://api.themoviedb.org/3/',
-    mode = 'movie/top_rated?',
+    var mode = 'movie/top_rated?',
     TopMovieRange = 1000, // Top 1000?
     minimumVotes = 250,  // Minimum 150 votes (Det tager lidt tid før nyere film kommer derop.)
     page = "&page="+Math.floor((Math.random() * (TopMovieRange/20)) + 1), // Dataen er delt op i "sider" (json filer), med 20 film i hver.
-    key = '&api_key=83b296315507b7ea0ccdcc536a5ab745',
     url = tmdb+mode+page+key;
     $.getJSON(url, function (json) {
         console.log(json);
@@ -50,13 +51,11 @@ function whichActor(){
                     var actor = json.cast[0].name,
                     character = json.cast[0].character;
                     if (randomNumber == 0){
-                        $('#right').text(actor);
-                        $('#right').addClass("1");
+                        $('#right').text(actor).addClass("1");
                         $('#left').removeClass("1");
 
                     }else{
-                        $('#left').text(actor);
-                        $('#left').addClass("1");
+                        $('#left').text(actor).addClass("1");
                         $('#right').removeClass("1");
                     }
                     if(character.indexOf("(voice)") >= 0){
@@ -68,7 +67,6 @@ function whichActor(){
                     $('#character').text(character);
                 });
                 var mode = 'movie/'+idAltMovie+"/credits",
-                key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
                 urlByIdAlt = tmdb+mode+key;
                 $.getJSON(urlByIdAlt, function (json) {
                     console.log(json);
@@ -87,15 +85,12 @@ function whichActor(){
 }
 
 function whichMovie(){
-    $("body").removeClass("whichActor");
-    $("body").addClass("whichMovie");
-    var tmdb = 'http://api.themoviedb.org/3/',
-    mode = 'discover/movie?',
+    $("body").removeClass("whichActor").addClass("whichMovie");
+    var mode = 'discover/movie?',
     page = '&page=1',
     currentYear = new Date().getFullYear(),
     year = Math.floor(Math.random()*(currentYear-(currentYear-20)+1)+(currentYear-20)),
     query = "&primary_release_year="+year+".desc&sort_by=popularity.desc", // Dataen er delt op i "sider" (json filer), med 20 film i hver.    
-    key = '&api_key=83b296315507b7ea0ccdcc536a5ab745',
     urlMovie = tmdb+mode+page+key+query;
     $.getJSON(urlMovie, function (json) {
         console.log(json);
@@ -136,7 +131,7 @@ function whichMovie(){
 var score = 0;
 function scoreCounter(){
     score = score+1;
-    document.getElementById("score").innerHTML=score+"";
+    $("#score").text(score);
 }
 
 function saveScore(){
@@ -217,9 +212,6 @@ function answerChecker() {
         questionType();
     });
 }
-
-
-var flag = 0;
 
 $(document).ready(function () {
     initiateSlide();
