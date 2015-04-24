@@ -20,6 +20,16 @@ body {
     height: 100%;
     width: 100%;
 }
+.button {
+    background-color: #f1c40f;
+    cursor: pointer;
+    display: inline-block;
+    margin: 30px;
+    padding: 20px;
+}
+.button:hover {
+    background-color: #f39c12;
+}
 .slide-container {
     background-color: gold;
     -webkit-transition: background 0.4s; /* Safari */
@@ -41,6 +51,7 @@ body {
     height: 30%;
     text-align: center;
     padding-top: 50px;
+    color: rgba(0, 0, 0, .7);
     
     display: flex;
     flex-direction: column;
@@ -50,7 +61,11 @@ body {
     margin: 3rem;
     font-size: 2em;
 }
-.question span {
+.question #character,
+.question #title,
+.question #releaseTitle {
+    color: rgba(0, 0, 0, 1);
+    font-size: 1.1em;
 }
 /* Question - END */
 
@@ -67,7 +82,7 @@ body {
     height: 100%;
     float: left;
     text-align: center;
-    cursor: pointer;
+    cursor: col-resize;
     
     display: flex;
     flex-direction: column;
