@@ -21,8 +21,20 @@ function questionType() {
 }
 
 function feedbackReset() {
-    $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback').removeClass(correctAnswerClass);
+    $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback, .answer.left, .answer.right').removeClass(correctAnswerClass);
     $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback').removeClass(falseAnswerClass);
+}
+function setAnswer(correctAnswer, actor) {
+    var falseAnswer;
+    if (correctAnswer === "left") {
+        falseAnswer = "right";
+    } else {
+        falseAnswer = "left";
+    }
+    $('.' + correctAnswer + ' p').text(actor).addClass(correctAnswerClass);
+    $('.slide-container .page' + correctAnswer + ' .feedback').addClass(correctAnswerClass);
+    $('.slide-container .page' + falseAnswer + ' .feedback').addClass(falseAnswerClass);
+    console.log(correctAnswer);
 }
 
 function whichActor() {
@@ -62,7 +74,7 @@ function whichActor() {
                 return;
             } else {
                 var randomNumber = Math.round(Math.random());
-                $('#title').text(title);                         
+                $('#title').text(title);
                 var mode = 'movie/' + idMovie + "/credits",
                     key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
                     urlById = tmdb + mode + key;
@@ -70,18 +82,11 @@ function whichActor() {
 //                    console.log(json);
                     var actor = json.cast[0].name,
                         character = json.cast[0].character;
-//                    feedbackReset();
+                    feedbackReset();
                     if (randomNumber === 0) {
-                        $('.right p').text(actor).addClass(correctAnswerClass);
-                        $('.left p').removeClass(correctAnswerClass);
-                        $('.slide-container .pageRight .feedback').addClass(correctAnswerClass);
-                        $('.slide-container .pageLeft .feedback').addClass(falseAnswerClass);
-
+                        setAnswer("right", actor);
                     } else {
-                        $('.left p').text(actor).addClass(correctAnswerClass);
-                        $('.right p').removeClass(correctAnswerClass);
-                        $('.slide-container .pageLeft .feedback').addClass(correctAnswerClass);
-                        $('.slide-container .pageRight .feedback').addClass(falseAnswerClass);
+                        setAnswer("left", actor);
                     }
                     if (character.indexOf("(voice)") >= 0) {
                         $("body").addClass("voice");
