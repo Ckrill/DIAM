@@ -238,14 +238,20 @@ function timer() {
             $(".overlay").fadeIn();
             $("body").addClass("blur");
             $("#closeOverlay").click(function () {
-                questionType();
-                $("#DateCountdown").TimeCircles().restart();
-                $("body").removeClass("blur");
-                $(".overlay").fadeOut();
+                resetGame();
             });
         }
     });
 }
+function resetGame() {    // 
+    questionType();
+    $("#DateCountdown").TimeCircles().restart();
+    $("body").removeClass("blur");
+    $(".overlay").fadeOut();
+    score = 0;
+    $("#score").text(score);
+}
+
 function hideQuestion() {    // 
     $("div[data-slick-index='1'] > *").hide().fadeIn(); // Den fader ind før vi er færdige med at hente data fra db, så den blinker nogle gange, især på dårligt net.
 }
