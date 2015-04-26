@@ -19,6 +19,9 @@ function questionType() {
         whichActor();
     }
 }
+function startVibrate(level) {
+    navigator.vibrate(level);
+}
 
 function feedbackReset() {
     $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback, .answer.left, .answer.right').removeClass(correctAnswerClass);
@@ -230,7 +233,7 @@ function timer() {
         }
     }).addListener(function (unit, amount, total) {
         if (total === 0) {
-            
+            startVibrate(50);
             saveScore();
             $(".overlay").fadeIn();
             $("#closeOverlay").click(function () {
