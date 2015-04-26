@@ -34,7 +34,7 @@ function setAnswer(correctAnswer, actor) {
     $('.' + correctAnswer + ' p').text(actor).addClass(correctAnswerClass);
     $('.slide-container .page' + correctAnswer + ' .feedback').addClass(correctAnswerClass);
     $('.slide-container .page' + falseAnswer + ' .feedback').addClass(falseAnswerClass);
-    console.log(correctAnswer);
+//    console.log("Correct is " + correctAnswer);
 }
 
 function whichActor() {
@@ -78,7 +78,7 @@ function whichActor() {
                 var mode = 'movie/' + idMovie + "/credits",
                     key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
                     urlById = tmdb + mode + key;
-                $.getJSON(urlById, function (json) {
+                $.getJSON(urlById, function (json) { // Get movie
 //                    console.log(json);
                     var actor = json.cast[0].name,
                         character = json.cast[0].character;
@@ -98,7 +98,7 @@ function whichActor() {
                 });
                 var mode = 'movie/' + idAltMovie + "/credits",
                     urlByIdAlt = tmdb + mode + key;
-                $.getJSON(urlByIdAlt, function (json) {
+                $.getJSON(urlByIdAlt, function (json) { // Get alternative movie
 //                    console.log(json);
                     var actorAlt = json.cast[0].name;
                     if (randomNumber === 1) {
@@ -106,7 +106,7 @@ function whichActor() {
                     } else {
                         $('.left p').text(actorAlt);
                     }
-                    return;
+                    return; // Chris: Hvorfor er der et "return" i denne funktion og ikke i den ovenover?
                 });
             }
         }
@@ -139,16 +139,15 @@ function whichMovie() {
             range = 3;
             yearAlt = year + (yearAlt * range);
         }
+        feedbackReset();
         if (randomNumber === 0) {
             $('.right p').text(yearAlt);
             $('.left p').text(year);
             $('.left p').addClass(correctAnswerClass);
-            $('.right p').removeClass(correctAnswerClass);
         } else {
             $('.left p').text(yearAlt);
             $('.right p').text(year);
             $('.right p').addClass(correctAnswerClass);
-            $('.left p').removeClass(correctAnswerClass);
         }
         $('#releaseTitle').text(title);
     });
@@ -164,7 +163,7 @@ function saveScore() {
     var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
     if (score > retrivedValue) {
         localStorage.setItem('LocalStorageKey', score);
-        var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
+        var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue); // Der skal vel ikke stå "var" i starten af denne linje?
         $("#popupscore").text("New highscore: " + retrivedValue + ".");
     } else {
         $("#popupscore").text("You got " + score + " pts. Your highscore is " + retrivedValue + ".");
@@ -190,7 +189,7 @@ function setSlideHeight() {
 
 // Return slider to question page
 function resetSliderPage() {
-    $('.slide-container').on('afterChange', function(event, slick, direction) {
+    $('.slide-container').on('afterChange', function (event, slick, direction) {
 //        console.log("Direction: " + direction);
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         if (currentSlide !== 1) {
@@ -240,13 +239,14 @@ function timer() {
         }
     });
 }
+function hideQuestion() {    // 
+    $("div[data-slick-index='1'] > *").hide().fadeIn(); // Den fader ind før vi er færdige med at hente data fra db, så den blinker nogle gange, især på dårligt net.
+}
 function answerChecker() {
-
     // Check on slide
     $('.slide-container').on('swipe', function (event, slick) {
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         if (currentSlide !== 1) { // only run if page is not the middle one, this is to prevent it from running twice, and to prevent it from running you cancel a drag
-            showFeedback();
             var correctAnswer = $("." + correctAnswerClass).closest();
             if ($("." + correctAnswerClass).closest("div").hasClass("left")) {
                 correctAnswer = 0;
@@ -262,23 +262,15 @@ function answerChecker() {
             } else {
                 $("body").addClass("falseBg").removeClass("correctBg");
             }
-            $('.slide-container').on('afterChange', function (event, slick) {
-                    //Denne function kører nogle gange flere gange... 
-                    // Kører også når man drager uden at slide...
-
-                hideFeedback();
-            });
             questionType();
         }
     });
-}
-function showFeedback() {
-    $("body").addClass("answered"); // Måske unødvendig?
-}
-function hideFeedback() {    // 
-    $("div[data-slick-index='1'] > *").hide();
-    $("body").removeClass("answered"); // Måske unødvendig?
-    $("div[data-slick-index='1'] > *").fadeIn();
+    $('.slide-container').on('afterChange', function (event, slick) {
+        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+        if (currentSlide !== 1) {
+            hideQuestion();
+        }
+    });
 }
 
 $(document).ready(function () {
