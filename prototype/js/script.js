@@ -235,7 +235,8 @@ function timer() {
         if (total === 0) {
             startVibrate(50);
             saveScore();
-            $(".overlay").fadeIn();
+            $(".popup").fadeIn();
+            $("body").addClass("blur");
             $("#closeOverlay").click(function () {
                 location.reload();
             });
