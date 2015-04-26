@@ -30,14 +30,19 @@ body.blur .wrapper {
     transition: 0.4s -webkit-filter linear;
 }
 .button {
-    background-color: #f1c40f;
+    border: 2px solid black;
+    color: black;
     cursor: pointer;
     display: inline-block;
-    margin: 30px;
-    padding: 20px;
+    padding: 15px;
+    width: 130px;
+    position: absolute;
+    bottom: 0;
+    left: 85px;
 }
 .button:hover {
-    background-color: #f39c12;
+    background-color: black;
+    color: white;
 }
 body.falseBg {
     background: #e74c3c;
@@ -179,6 +184,14 @@ body.correctBg {
     font-weight: 300;
 }
 
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
 .popup {
     position: absolute;
     top: calc(50% - 150px);
@@ -189,7 +202,7 @@ body.correctBg {
     padding: 15px;
     font-size: 2em;
     text-align: center; 
-    display: none;
+    
 }
 #popupscore {
     font-size: 0.8em;
