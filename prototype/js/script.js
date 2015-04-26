@@ -213,7 +213,7 @@ function timer() {
         "bg_width": 1.2,
         "fg_width": 0.1,
         count_past_zero: false,
-        "circle_bg_color": "rgba(0, 0, 0, .0)",
+        use_background: false,
         "time": {
             "Days": {
                 "show": false
@@ -238,7 +238,10 @@ function timer() {
             $(".overlay").fadeIn();
             $("body").addClass("blur");
             $("#closeOverlay").click(function () {
-                location.reload();
+                questionType();
+                $("#DateCountdown").TimeCircles().restart();
+                $("body").removeClass("blur");
+                $(".overlay").fadeOut();
             });
         }
     });
@@ -276,13 +279,16 @@ function answerChecker() {
         }
     });
 }
-
+function startGame(){
+    $(".intro").fadeOut();
+    timer();
+}
 $(document).ready(function () {
     initiateSlide();
     setSlideHeight();
     resetSliderPage();
     questionType();
-    timer();
+    
     answerChecker();
 });
 
