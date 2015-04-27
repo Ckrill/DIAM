@@ -24,8 +24,8 @@ function startVibrate(level) {
 }
 
 function feedbackReset() {
-    $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback, .answer.left p, .answer.right p').removeClass(correctAnswerClass);
-    $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback').removeClass(falseAnswerClass);
+    $('.slide-container .feedback, .answer').removeClass(correctAnswerClass);
+    $('.slide-container .feedback').removeClass(falseAnswerClass);
 }
 function setAnswer(correctAnswer, actor) {
     var falseAnswer;
@@ -34,9 +34,10 @@ function setAnswer(correctAnswer, actor) {
     } else {
         falseAnswer = "left";
     }
-    $('.' + correctAnswer + ' p').text(actor).addClass(correctAnswerClass);
-    $('.slide-container .page' + correctAnswer + ' .feedback').addClass(correctAnswerClass);
-    $('.slide-container .page' + falseAnswer + ' .feedback').addClass(falseAnswerClass);
+    $('.answer.' + correctAnswer).addClass(correctAnswerClass);
+    $('.answer.' + correctAnswer + ' p').text(actor);
+    $('.slide-container .feedback.' + correctAnswer).addClass(correctAnswerClass);
+    $('.slide-container .feedback.' + falseAnswer).addClass(falseAnswerClass);
 //    console.log("Correct is " + correctAnswer);
 }
 
@@ -105,9 +106,9 @@ function whichActor() {
 //                    console.log(json);
                     var actorAlt = json.cast[0].name;
                     if (randomNumber === 1) {
-                        $('.right p').text(actorAlt);
+                        $('.answer.right p').text(actorAlt);
                     } else {
-                        $('.left p').text(actorAlt);
+                        $('.answer.left p').text(actorAlt);
                     }
                     return; // Chris: Hvorfor er der et "return" i denne funktion og ikke i den ovenover?
                 });
@@ -144,13 +145,13 @@ function whichMovie() {
         }
         feedbackReset();
         if (randomNumber === 0) {
-            $('.right p').text(yearAlt);
-            $('.left p').text(year);
-            $('.left p').addClass(correctAnswerClass);
+            $('.answer.right p').text(yearAlt);
+            $('.answer.left p').text(year);
+            $('.answer.left').addClass(correctAnswerClass);
         } else {
-            $('.left p').text(yearAlt);
-            $('.right p').text(year);
-            $('.right p').addClass(correctAnswerClass);
+            $('.answer.left p').text(yearAlt);
+            $('.answer.right p').text(year);
+            $('.answer.right').addClass(correctAnswerClass);
         }
         $('#releaseTitle').text(title);
     });
@@ -261,10 +262,10 @@ function answerChecker() {
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         if (currentSlide !== 1) { // only run if page is not the middle one, this is to prevent it from running twice, and to prevent it from running you cancel a drag
             var correctAnswer = $("." + correctAnswerClass).closest();
-            if ($("." + correctAnswerClass).closest("div").hasClass("left")) {
+            if ($("." + correctAnswerClass).hasClass("left")) {
                 correctAnswer = 0;
 //                console.log(correctAnswer);
-            } else if ($("." + correctAnswerClass).closest("div").hasClass("right")) {
+            } else if ($("." + correctAnswerClass).hasClass("right")) {
                 correctAnswer = 2;
 //                console.log(correctAnswer);
             }

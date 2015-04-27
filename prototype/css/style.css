@@ -121,9 +121,9 @@ body.correctBg {
     font-size: 2em;
 }
 
-.left {
+.answer.left {
 }
-.left:before {
+.answer.left:before {
     font-family: 'icomoon';
     content: "\e601";
     font-size: 2em;
@@ -132,9 +132,9 @@ body.correctBg {
     padding: 10px;
 }
 
-.right {
+.answer.right {
 }
-.right:before{
+.answer.right:before{
     font-family: 'icomoon';
     content: "\e600";
     font-size: 2em;
@@ -145,16 +145,19 @@ body.correctBg {
 /* Answer - END */
 
 /* Feedback */
-.feedback {
-    font-size: 3em;
+/*.feedback {*/
+.feedback div {
+/*    font-size: 3em;*/
     position: relative;
     height: 100%;
     width: 100%;
-    text-align: center;
+/*    text-align: center;*/
     
+/*
     display: flex;
     flex-direction: column;
     justify-content: center;
+*/
 }
 .answered .correct {
 }
