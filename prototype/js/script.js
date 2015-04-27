@@ -178,6 +178,7 @@ function whichMovie() {
 var score = 0;
 function scoreCounter() {
     score = score + 1;
+    changeTime(2);
     $("#score").text(score);
 }
 // Score counter - END
@@ -235,7 +236,6 @@ function timer() {
         "animation": "smooth",
         "bg_width": 1.2,
         "fg_width": 0.1,
-        count_past_zero: false,
         use_background: false,
         total_duration: 100,
         "time": {
@@ -256,7 +256,8 @@ function timer() {
 
         }
     }).addListener(function (unit, amount, total) {
-        if (total === 0) {
+        if (total < 1) {
+            $("#DateCountdown").TimeCircles().stop();
             startVibrate(50);
             saveScore();
             $(".overlay").fadeIn();
@@ -272,12 +273,12 @@ function timer() {
 // Reset game
 function resetGame() {    // 
     questionType();
-    $("#DateCountdown").TimeCircles().restart();
+    $("#DateCountdown").data('timer', 100).TimeCircles().restart();
     $("body").removeClass("blur");
     $(".overlay").fadeOut();
     score = 0;
     $("#score").text(score);
-     $("body").removeClass()
+    $("body").removeClass()
 }
 // Reset game - END
 
@@ -287,7 +288,14 @@ function hideQuestion() {    //
     $("div[data-slick-index='1'] > *").hide().fadeIn(); // Den fader ind før vi er færdige med at hente data fra db, så den blinker nogle gange, især på dårligt net.
 }
 // Hide question and answer options - END
-
+function changeTime(secs) {
+    var timeLeft = $("#DateCountdown").TimeCircles().getTime(),
+    newTime = timeLeft+secs;    
+    if(newTime > 100){
+        newTime = 100;
+    }
+    $("#DateCountdown").data('timer', (newTime)).TimeCircles().restart();
+}
 // Check answer
 function answerChecker() {
     // Check on slide
@@ -306,6 +314,7 @@ function answerChecker() {
                 $("body").addClass("correctBg").removeClass("falseBg");
             } else {
                 $("body").addClass("falseBg").removeClass("correctBg");
+                changeTime(-2);
             }
             questionType();
         }
