@@ -237,6 +237,7 @@ function timer() {
         "fg_width": 0.1,
         count_past_zero: false,
         use_background: false,
+        total_duration: 100,
         "time": {
             "Days": {
                 "show": false
@@ -276,6 +277,7 @@ function resetGame() {    //
     $(".overlay").fadeOut();
     score = 0;
     $("#score").text(score);
+     $("body").removeClass()
 }
 // Reset game - END
 
