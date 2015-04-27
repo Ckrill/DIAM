@@ -24,7 +24,7 @@ function startVibrate(level) {
 }
 
 function feedbackReset() {
-    $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback, .answer.left, .answer.right').removeClass(correctAnswerClass);
+    $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback, .answer.left p, .answer.right p').removeClass(correctAnswerClass);
     $('.slide-container .pageRight .feedback, .slide-container .pageLeft .feedback').removeClass(falseAnswerClass);
 }
 function setAnswer(correctAnswer, actor) {
