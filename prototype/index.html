@@ -4,21 +4,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <title>Movie Quiz</title>
-        <!--<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>-->
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/timeCircles.js"></script>
-        <script type='text/javascript' src='js/modernizr.js'></script>
-        <script type='text/javascript' src='js/fastclick.js'></script>
-		<script type="text/javascript" src="js/slick.min.js"></script>
-        <script type='text/javascript' src='js/script.js'></script>
+        
         <link href="css/style.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900,300italic' rel='stylesheet' type='text/css'>
-
-                <link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-ipad.png">
+        
+        <link rel="apple-touch-icon" sizes="76x76" href="img/touch-icon-ipad.png">
         <link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png">
         <link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png">
         <link rel="icon" type="image/png" href="img/android-chrome-192x192.png" sizes="192x192">
-		
 	</head>
     <body>
         <div class="wrapper">
@@ -63,7 +55,25 @@
             <div class="introInner">
         </div>
         
+        <!--<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>-->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/timeCircles.js"></script>
+        <script type='text/javascript' src='js/modernizr.js'></script>
+        <script type='text/javascript' src='js/fastclick.js'></script>
+		<script type="text/javascript" src="js/slick.min.js"></script>
+        <script type='text/javascript' src='js/script.js'></script>
+        <script type="text/javascript">
+            WebFontConfig = {
+                google: { families: [ 'Source+Sans+Pro:400,300,900,300italic:latin' ] }
+            };
+            (function() {
+                var wf = document.createElement('script');
+                wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                wf.type = 'text/javascript';
+                wf.async = 'true';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(wf, s);
+            })();
+        </script>
     </body>
 </html>
-
-
