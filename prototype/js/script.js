@@ -2,14 +2,18 @@
 /*global $, jQuery, alert, func*/
 /*jslint plusplus: true */
 
+// Variables
 // Options
 var correctAnswerClass = "correct",
     falseAnswerClass = "false",
 
-// json variables
+// JSON
     tmdb = 'http://api.themoviedb.org/3/',
     key = '&api_key=83b296315507b7ea0ccdcc536a5ab745',
     flag = 0;
+// Variables - END
+
+// Question type
 function questionType() {
     flag = flag + 1;
     if (flag > 3) {
@@ -19,14 +23,22 @@ function questionType() {
         whichActor();
     }
 }
+// Question type - END
+
+// Vibrate
 function startVibrate(level) {
     navigator.vibrate(level);
 }
+// Vibrate - END
 
+// Reset feedback
 function feedbackReset() {
     $('.feedback, .answer').removeClass(correctAnswerClass);
     $('.feedback').removeClass(falseAnswerClass);
 }
+// Reset feedback - END
+
+// Set answer
 function setAnswer(correctAnswer, actor) {
     var falseAnswer;
     if (correctAnswer === "left") {
@@ -40,7 +52,9 @@ function setAnswer(correctAnswer, actor) {
     $('.feedback.' + falseAnswer).addClass(falseAnswerClass);
     console.info("Correct is " + correctAnswer);
 }
+// Set answer - END
 
+// Question type: What actor
 function whichActor() {
     $("body").removeClass("whichMovie");
     var mode = 'movie/top_rated?',
@@ -117,7 +131,9 @@ function whichActor() {
         randomMovie();
     });
 }
+// Question type: What actor - END
 
+// Question type: What year
 function whichMovie() {
     $("body").removeClass("whichActor").addClass("whichMovie");
     var mode = 'discover/movie?',
@@ -156,13 +172,17 @@ function whichMovie() {
         $('#releaseTitle').text(title);
     });
 }
+// Question type: What year - END
 
+// Score counter
 var score = 0;
 function scoreCounter() {
     score = score + 1;
     $("#score").text(score);
 }
+// Score counter - END
 
+// Save score to Local storage
 function saveScore() {
     var retrivedValue = localStorage.getItem('LocalStorageKey', retrivedValue);
     if (score > retrivedValue) {
@@ -173,6 +193,7 @@ function saveScore() {
         $("#popupscore").text("You got " + score + " pts. Your highscore is " + retrivedValue + ".");
     }
 }
+// Save score to Local storage - END
 
 // Initiate slider
 function initiateSlide() {
