@@ -113,6 +113,7 @@ function whichActor() {
                         $("body").removeClass("voice");
                     }
                     $('#character').text(character);
+                    answerHeight();
                 });
                 var mode = 'movie/' + idAltMovie + "/credits",
                     urlByIdAlt = tmdb + mode + key;
@@ -170,6 +171,7 @@ function whichMovie() {
             $('.answer.right').addClass(correctAnswerClass);
         }
         $('#releaseTitle').text(title);
+        answerHeight();
     });
 }
 // Question type: What year - END
@@ -278,7 +280,7 @@ function resetGame() {    //
     $(".overlay").fadeOut();
     score = 0;
     $("#score").text(score);
-    $("body").removeClass()
+    $("body").removeClass();
 }
 // Reset game - END
 
@@ -334,6 +336,16 @@ function startGame(){
     timer();
 }
 // Start game - END
+
+// Answer height
+function answerHeight() {
+    var questionHeight = $(".question").outerHeight();
+    var windowHeight = $(window).height();
+    var questionHeightRatio = questionHeight / windowHeight;
+    var answerHeight = 1 - questionHeightRatio;
+    $(".answers").css("height", answerHeight * 100 + "%");
+}
+// Answer height - END
 
 // Ready
 $(document).ready(function () {
