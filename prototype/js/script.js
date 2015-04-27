@@ -38,7 +38,7 @@ function setAnswer(correctAnswer, actor) {
     $('.answer.' + correctAnswer + ' p').text(actor);
     $('.slide-container .feedback.' + correctAnswer).addClass(correctAnswerClass);
     $('.slide-container .feedback.' + falseAnswer).addClass(falseAnswerClass);
-//    console.log("Correct is " + correctAnswer);
+    console.info("Correct is " + correctAnswer);
 }
 
 function whichActor() {
