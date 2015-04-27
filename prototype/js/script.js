@@ -24,8 +24,8 @@ function startVibrate(level) {
 }
 
 function feedbackReset() {
-    $('.slide-container .feedback, .answer').removeClass(correctAnswerClass);
-    $('.slide-container .feedback').removeClass(falseAnswerClass);
+    $('.feedback, .answer').removeClass(correctAnswerClass);
+    $('.feedback').removeClass(falseAnswerClass);
 }
 function setAnswer(correctAnswer, actor) {
     var falseAnswer;
@@ -34,10 +34,10 @@ function setAnswer(correctAnswer, actor) {
     } else {
         falseAnswer = "left";
     }
-    $('.answer.' + correctAnswer).addClass(correctAnswerClass);
     $('.answer.' + correctAnswer + ' p').text(actor);
-    $('.slide-container .feedback.' + correctAnswer).addClass(correctAnswerClass);
-    $('.slide-container .feedback.' + falseAnswer).addClass(falseAnswerClass);
+//    $('.answer.' + correctAnswer).addClass(correctAnswerClass);
+    $('.feedback.' + correctAnswer + ', .answer.' + correctAnswer).addClass(correctAnswerClass);
+    $('.feedback.' + falseAnswer).addClass(falseAnswerClass);
     console.info("Correct is " + correctAnswer);
 }
 
@@ -208,6 +208,7 @@ function resetSliderPage() {
 }
 // Return slider to question page - END
 
+// Timer
 function timer() {
     $("#DateCountdown").TimeCircles({
         "animation": "smooth",
@@ -244,6 +245,9 @@ function timer() {
         }
     });
 }
+// Timer - END
+
+// Reset game
 function resetGame() {    // 
     questionType();
     $("#DateCountdown").TimeCircles().restart();
@@ -252,22 +256,26 @@ function resetGame() {    //
     score = 0;
     $("#score").text(score);
 }
+// Reset game - END
 
+// Hide question and answer options
+// - and then fade them in
 function hideQuestion() {    // 
     $("div[data-slick-index='1'] > *").hide().fadeIn(); // Den fader ind før vi er færdige med at hente data fra db, så den blinker nogle gange, især på dårligt net.
 }
+// Hide question and answer options - END
+
+// Check answer
 function answerChecker() {
     // Check on slide
     $('.slide-container').on('swipe', function (event, slick) {
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         if (currentSlide !== 1) { // only run if page is not the middle one, this is to prevent it from running twice, and to prevent it from running you cancel a drag
             var correctAnswer = $("." + correctAnswerClass).closest();
-            if ($("." + correctAnswerClass).hasClass("left")) {
+            if ($(".answer." + correctAnswerClass).hasClass("left")) {
                 correctAnswer = 0;
-//                console.log(correctAnswer);
-            } else if ($("." + correctAnswerClass).hasClass("right")) {
+            } else if ($(".answer." + correctAnswerClass).hasClass("right")) {
                 correctAnswer = 2;
-//                console.log(correctAnswer);
             }
 
             if (currentSlide === correctAnswer) {
@@ -286,10 +294,16 @@ function answerChecker() {
         }
     });
 }
+// Check answer - END
+
+// Start game
 function startGame(){
     $(".intro").fadeOut();
     timer();
 }
+// Start game - END
+
+// Ready
 $(document).ready(function () {
     initiateSlide();
     setSlideHeight();
