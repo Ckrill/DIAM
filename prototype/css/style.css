@@ -263,8 +263,11 @@ canvas {
     display: table-cell;
     vertical-align: middle;
 }
-.intro img {
-    width: 160px;
-    max-width: 80%;
+#ticketTop { 
+    transition: all .2s ease-in-out;
 }
+.gameStart #ticketTop { 
+    transform: scale(1.2);
+} 
+
 /* Intro - END */

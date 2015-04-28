@@ -332,7 +332,8 @@ function answerChecker() {
 
 // Start game
 function startGame(){
-    $(".intro").fadeOut();
+    $("body").addClass("gameStart");
+    $(".intro").fadeOut(900);
     timer();
 }
 // Start game - END
