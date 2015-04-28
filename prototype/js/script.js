@@ -333,7 +333,7 @@ function answerChecker() {
 // Start game
 function startGame(){
     $("body").addClass("gameStart");
-    $(".intro").fadeOut(900);
+    $(".intro").delay(190).fadeOut();
     timer();
 }
 // Start game - END
