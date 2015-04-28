@@ -239,7 +239,7 @@ function timer() {
         "bg_width": 1.2,
         "fg_width": 0.1,
         use_background: false,
-        total_duration: 100,
+        total_duration: 101,
         "time": {
             "Days": {
                 "show": false
@@ -337,6 +337,15 @@ function startGame(){
     timer();
 }
 // Start game - END
+
+function startGuide(){
+    $(".intro").delay(200).fadeOut();
+    timer();
+    setTimeout(function() {
+        $("#DateCountdown").TimeCircles().stop();
+    },50);
+    /* Tooltipstuff here */
+}
 
 // Answer height
 function answerHeight() {
