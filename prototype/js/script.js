@@ -15,6 +15,7 @@ var correctAnswerClass = "correct",
 
 // Question type
 function questionType() {
+//    console.info("Rolling for new question!");
     flag = flag + 1;
     if (flag > 3) {
         flag = 0;
@@ -37,6 +38,13 @@ function feedbackReset() {
     $('.feedback').removeClass(falseAnswerClass);
 }
 // Reset feedback - END
+
+// Reset question
+function questionReset() {
+//    console.info("Reset question");
+    $('.answer p, #character, #title, #releaseTitle').text("");
+}
+// Reset question - END
 
 // Set answer
 function setAnswer(correctAnswer, actor) {
@@ -198,40 +206,6 @@ function saveScore() {
 }
 // Save score to Local storage - END
 
-// Initiate slider
-function initiateSlide() {
-    $('.slide-container').slick({
-        initialSlide: 1,
-        arrows: false,
-        infinite: false
-    });
-}
-// Initiate slider - END
-
-// Set height of Slider
-function setSlideHeight() {
-    var windowHeight = $(window).height();
-    $(".page").css("height", windowHeight + "px");
-}
-// Set height of Slider - END
-
-// Return slider to question page
-function resetSliderPage() {
-    $('.slide-container').on('afterChange', function (event, slick, direction) {
-//        console.log("Direction: " + direction);
-        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
-        if (currentSlide !== 1) {
-            setTimeout(function () {
-                $('.slide-container').slick("slickSetOption", "speed", "0");
-                $('.slide-container').slick("slickGoTo", 1);
-                $('.slide-container').slick("slickSetOption", "speed", "300");
-//                console.log("Going back to the middle slide!");
-            }, 100);
-        }
-    });
-}
-// Return slider to question page - END
-
 // Timer
 function timer() {
     $("#DateCountdown").TimeCircles({
@@ -284,12 +258,6 @@ function resetGame() {    //
 }
 // Reset game - END
 
-// Hide question and answer options
-// - and then fade them in
-function hideQuestion() {    // 
-    $("div[data-slick-index='1'] > *").hide().fadeIn(); // Den fader ind før vi er færdige med at hente data fra db, så den blinker nogle gange, især på dårligt net.
-}
-// Hide question and answer options - END
 function changeTime(secs) {
     var timeLeft = $("#DateCountdown").TimeCircles().getTime(),
     newTime = timeLeft+secs;    
@@ -298,12 +266,55 @@ function changeTime(secs) {
     }
     $("#DateCountdown").data('timer', (newTime)).TimeCircles().restart();
 }
+
+// Initiate slider
+function initiateSlide() {
+    $('.slide-container').slick({
+        initialSlide: 1,
+        arrows: false,
+        infinite: false
+    });
+}
+// Initiate slider - END
+
+// Set height of Slider
+function setSlideHeight() {
+    var windowHeight = $(window).height();
+    $(".page").css("height", windowHeight + "px");
+}
+// Set height of Slider - END
+
+// Return slider to question page
+function resetSliderPage() {
+    $('.slide-container').on('afterChange', function (event, slick, direction) {
+//        console.log("Direction: " + direction);
+        var currentSlide = $('.slide-container').slick("slickCurrentSlide");
+        if (currentSlide !== 1) {
+            setTimeout(function () {
+                $('.slide-container').slick("slickSetOption", "speed", "0");
+                $('.slide-container').slick("slickGoTo", 1);
+                $('.slide-container').slick("slickSetOption", "speed", "300");
+//                console.log("Going back to the middle slide!");
+            }, 100);
+        }
+    });
+}
+// Return slider to question page - END
+
+// Hide question and answer options
+// - and then fade them in
+function hideQuestion() {    // 
+//    console.info("Hide, then fade in");
+    $("div[data-slick-index='1'] > *").hide().fadeIn(); // Den fader ind før vi er færdige med at hente data fra db, så den blinker nogle gange, især på dårligt net.
+}
+// Hide question and answer options - END
+
 // Check answer
 function answerChecker() {
     // Check on slide
     $('.slide-container').on('swipe', function (event, slick) {
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
-        if (currentSlide !== 1) { // only run if page is not the middle one, this is to prevent it from running twice, and to prevent it from running you cancel a drag
+        if (currentSlide !== 1) { // only run if page is not the middle one, this is to prevent it from running twice, and to prevent it from running if you cancel a drag
             var correctAnswer = $("." + correctAnswerClass).closest();
             if ($(".answer." + correctAnswerClass).hasClass("left")) {
                 correctAnswer = 0;
@@ -318,6 +329,7 @@ function answerChecker() {
                 $("body").addClass("falseBg").removeClass("correctBg");
                 changeTime(-2);
             }
+            questionReset();
             questionType();
         }
     });
