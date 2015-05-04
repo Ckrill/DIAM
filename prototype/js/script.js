@@ -234,7 +234,7 @@ function timer() {
     }).addListener(function (unit, amount, total) {
         if (total < 1) {
             $("#DateCountdown").TimeCircles().stop();
-            startVibrate(50);
+            //startVibrate(50);
             saveScore();
             $(".overlay").fadeIn();
             $("body").addClass("blur");
