@@ -343,7 +343,7 @@ function answerChecker() {
                 $("body").addClass("correctBg").removeClass("falseBg");
             } else {
                 $("body").addClass("falseBg").removeClass("correctBg");
-                changeTime(-2);
+                changeTime(-4);
             }
             questionReset();
             questionType();
