@@ -89,13 +89,7 @@ body.correctBg .answers { /* Temporary test */
     flex-direction: column;
     justify-content: center;
 }
-@media screen and (min-width: 800px) {
-    .question {
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
+
 .question p {
 /*    margin: 3rem;*/
     margin: 0;
@@ -269,5 +263,21 @@ canvas {
 .gameStart #ticketTop { 
     transform: scale(1.1) rotate(-15deg);
 } 
+.time_circles > div > span {
+        line-height: 10px!important;
+    }
+@media (min-width: 768px) {
+    
+    .answer p, .answer.left:before,.answer.right:before, .question p{
+          font-size: 2.5em;
+    }
+    .score{
+        font-size: 3em;
+    }
+    .time_circles > div > span {
+        font-size: 2.4em!important;
+        line-height: 11px!important;
+    }
+}
 
 /* Intro - END */
