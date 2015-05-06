@@ -44,7 +44,7 @@ function feedbackReset() {
 // Reset question
 function questionReset() {
 //    console.info("Reset question");
-    $('.answer p, #character, #title, #releaseTitle').text("");
+    $('.question, .answer').html("");
 }
 // Reset question - END
 
@@ -184,6 +184,7 @@ function whichMovie() {
         question = "<p class='whichMovieparagraf'>When was '<span id='releaseTitle'>" + title + "</span>' released?</p>";
         $('.question').html(question);
         answerHeight();
+        console.log(randomNumber);
         // Inset answers
         if (randomNumber === 0) {
             setAnswer("left", year);
