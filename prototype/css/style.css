@@ -165,15 +165,6 @@ body.correctBg .answers { /* Temporary test */
 }
 .answered .false {
 }
-.voiced {
-    display: none;
-}
-.voice .voiced {
-    display: inline;    
-}
-.voice .played {
-    display: none; 
-}
 .whichMovieparagraf {
     display: none;   
 }
