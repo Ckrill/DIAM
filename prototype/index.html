@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes">
         <title>Movie Quiz</title>
         
@@ -12,16 +12,16 @@
         <link rel="apple-touch-icon" sizes="120x120" href="img/touch-icon-iphone-retina.png">
         <link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad-retina.png">
         <link rel="icon" type="image/png" href="img/android-chrome-192x192.png" sizes="192x192">
-	</head>
+    </head>
     <body>
         <div class="wrapper">
             <div class="slide-container">
                 <div class="page feedback left">
                     <div class=""></div>
                 </div>
-                <div class="page">
-                    <div class="question"></div>
-                    <div class="answers">
+                <div class="page" >
+                    <div class="question tips tip3"></div>
+                    <div class="answers tips tip4">
                         <div class="answer left"></div>
                         <div class="answer right"></div>
                     </div>
@@ -30,8 +30,8 @@
                     <div class=""></div>
                 </div>
             </div>
-            <div class="score"><span id="score">0</span><span> pts</span></div>
-            <div id="DateCountdown" data-timer="101" style="width: 80px;"></div>
+            <div class="score tips tip1"><span id="score">0</span><span> pts</span></div>
+            <div id="DateCountdown" class="tips tip2" data-timer="101" style="width: 80px;"></div>
         </div>
         <div class="overlay">
             <div class="popup">
@@ -116,13 +116,34 @@
                 <a id="guide" class="button ghost" onclick="startGuide()">Guide</a>
             </div>
         </div>
-        
+        <div class="guideOverlay">
+            <div class="guideOverlay__text tip1">
+                <div>You get one point per right answer.1 </div>
+                <a class="button" onclick="nextTip()">Next</a>
+            </div>
+            <div class="guideOverlay__text tip2" >
+                <div>You get one point per right answer.2 </div>
+                <a class="button" onclick="nextTip()">Next</a>
+            </div>
+            <div class="guideOverlay__text moveDown tip3">
+                <div>You get one point per right answer.3 </div>
+                <a class="button" onclick="nextTip()">Next</a>
+            </div>
+            <div class="guideOverlay__text tip4" >
+                <div>You get one point per right answer.4 </div>
+                <a class="button" onclick="nextTip()">Next</a>
+            </div>
+            <div class="guideOverlay__text tip5" >
+                <div>You get one point per right answer.4 </div>
+                <a class="button" onclick="startGame()">Start game</a>
+            </div>
+        </div>
         <!--<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>-->
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/timeCircles.js"></script>
         <script type='text/javascript' src='js/modernizr.js'></script>
         <script type='text/javascript' src='js/fastclick.js'></script>
-		<script type="text/javascript" src="js/slick.min.js"></script>
+        <script type="text/javascript" src="js/slick.min.js"></script>
         <script type='text/javascript' src='js/script.js'></script>
         <script type="text/javascript">
             WebFontConfig = {

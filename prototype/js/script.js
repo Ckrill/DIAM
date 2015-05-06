@@ -363,13 +363,19 @@ function startGame(){
 }
 // Start game - END
 
-function startGuide(){
-    $(".intro").delay(200).fadeOut();
-    timer();
-    setTimeout(function() {
-        $("#DateCountdown").TimeCircles().stop();
-    },50);
-    /* Tooltipstuff here */
+var tipNumber = 1;
+function nextTip() {
+    $(".guideOverlay__text").hide();
+    $(".tips").css("opacity","0.1");
+    $(".tip"+tipNumber+"").css("opacity","1").fadeIn();
+    tipNumber = tipNumber+1;
+    if (tipNumber > 5){
+        $(".tips").css("opacity","1");
+        $(".tips").css("opacity","1!important");
+        $('.slide-container').slick("slickSetOption", "speed", "1500");
+        $('.slide-container').slick("slickGoTo", 2);
+        $('.slide-container').slick("slickSetOption", "speed", "300");
+    }
 }
 
 // Answer height
