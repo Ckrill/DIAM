@@ -285,7 +285,8 @@ function initiateSlide() {
     $('.slide-container').slick({
         initialSlide: 1,
         arrows: false,
-        infinite: false
+        infinite: false,
+        accessibility: false
     });
 }
 // Initiate slider - END
@@ -325,7 +326,7 @@ function hideQuestion() {    //
 // Check answer
 function answerChecker() {
     // Check on slide
-    $('.slide-container').on('swipe', function (event, slick) {
+    $('.slide-container').on('beforeChange', function (event, slick) {
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         if (currentSlide !== 1) { // only run if page is not the middle one, this is to prevent it from running twice, and to prevent it from running if you cancel a drag
             var correctAnswer = $("." + correctAnswerClass).closest();
@@ -422,4 +423,15 @@ $(window).scroll(function () {
 $(window).resize(function () {
     setSlideHeight();
 });
-//Resize - END
+// Resize - END
+
+// Arrow keys
+$(document).keyup(function (e) {
+	if(e.which == 37) { // Left
+        $('.slide-container').slick("slickGoTo", 2);
+	}
+	if(e.which == 39) { // Right
+        $('.slide-container').slick("slickGoTo", 0);
+	}
+});
+// Arrow keys - END
