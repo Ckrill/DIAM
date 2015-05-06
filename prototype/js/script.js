@@ -184,7 +184,7 @@ function whichMovie() {
         question = "<p class='whichMovieparagraf'>When was '<span id='releaseTitle'>" + title + "</span>' released?</p>";
         $('.question').html(question);
         answerHeight();
-        console.log(randomNumber);
+        randomNumber = Math.round(Math.random());
         // Inset answers
         if (randomNumber === 0) {
             setAnswer("left", year);
