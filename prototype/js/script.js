@@ -56,7 +56,7 @@ function setAnswer(correctAnswer, actor) {
     } else {
         falseAnswer = "left";
     }
-    $('.answer.' + correctAnswer + ' p').text(actor);
+    $('.answer.' + correctAnswer).html("<p>" + actor + "</p>");
 //    $('.answer.' + correctAnswer).addClass(correctAnswerClass);
     $('.feedback.' + correctAnswer + ', .answer.' + correctAnswer).addClass(correctAnswerClass);
     $('.feedback.' + falseAnswer).addClass(falseAnswerClass);
@@ -102,7 +102,7 @@ function whichActor() {
                 return;
             } else {
                 var randomNumber = Math.round(Math.random());
-                $('#title').text(title);
+//                $('#title').text(title);
                 var mode = 'movie/' + idMovie + "/credits",
                     key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
                     urlById = tmdb + mode + key;
@@ -111,18 +111,25 @@ function whichActor() {
                     var actor = json.cast[0].name,
                         character = json.cast[0].character;
                     feedbackReset();
+                    // Inset correct answer
                     if (randomNumber === 0) {
                         setAnswer("right", actor);
                     } else {
                         setAnswer("left", actor);
                     }
+                    
+                    // Inset question
+                    var question;
+                    question = "<p class='whichActorparagraf'>Who ";
                     if (character.indexOf("(voice)") >= 0) {
-                        $("body").addClass("voice");
+                        question = question + "<span class='voiced'>voiced</span>"
                         var character = character.replace(" (voice)", "");
                     } else {
-                        $("body").removeClass("voice");
+                        question = question + "<span class='played'>played</span>"
                     }
-                    $('#character').text(character);
+                    question = question + " '<span id='character'>" + character + "</span>' in '<span id='title'>" + title + "</span>'?</p>";
+                    $('.question').html(question);
+                    
                     answerHeight();
                 });
                 var mode = 'movie/' + idAltMovie + "/credits",
@@ -130,10 +137,11 @@ function whichActor() {
                 $.getJSON(urlByIdAlt, function (json) { // Get alternative movie
 //                    console.log(json);
                     var actorAlt = json.cast[0].name;
+                    // Inset false answer
                     if (randomNumber === 1) {
-                        $('.answer.right p').text(actorAlt);
+                        $('.answer.right').html("<p>" + actorAlt + "</p>");
                     } else {
-                        $('.answer.left p').text(actorAlt);
+                        $('.answer.left').html("<p>" + actorAlt + "</p>");
                     }
                     return; // Chris: Hvorfor er der et "return" i denne funktion og ikke i den ovenover?
                 });
@@ -171,17 +179,19 @@ function whichMovie() {
             yearAlt = year + (yearAlt * range);
         }
         feedbackReset();
-        if (randomNumber === 0) {
-            $('.answer.right p').text(yearAlt);
-            $('.answer.left p').text(year);
-            $('.answer.left').addClass(correctAnswerClass);
-        } else {
-            $('.answer.left p').text(yearAlt);
-            $('.answer.right p').text(year);
-            $('.answer.right').addClass(correctAnswerClass);
-        }
-        $('#releaseTitle').text(title);
+        // Inset question
+        var question;
+        question = "<p class='whichMovieparagraf'>When was '<span id='releaseTitle'>" + title + "</span>' released?</p>";
+        $('.question').html(question);
         answerHeight();
+        // Inset answers
+        if (randomNumber === 0) {
+            setAnswer("left", year);
+            $('.answer.right').html("<p>" + yearAlt + "</p>");
+        } else {
+            setAnswer("right", year);
+            $('.answer.left').html("<p>" + yearAlt + "</p>");
+        }
     });
 }
 // Question type: What year - END
