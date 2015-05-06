@@ -388,7 +388,6 @@ function nextTip() {
         var correctIndex = $(".page.correct").index(".page");
         $('.slide-container').slick("slickGoTo", correctIndex);
         $('.slide-container').slick("slickSetOption", "speed", "300");
-        //$(".intro").fadeIn();
     }
 }
 

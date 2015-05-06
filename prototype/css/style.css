@@ -286,7 +286,7 @@ canvas {
 }
 .guideOverlay__text{
     width: 300px;
-    padding: 15px;
+    padding: 30px 15px;
     position: absolute;
     font-size: 2em;
     top: 100px;
@@ -295,6 +295,6 @@ canvas {
 }
 .guideOverlay__text.moveDown{
     top: inherit;
-    bottom: 25%;
+    bottom: 20%;
 }
 /* Intro - END */
