@@ -28,7 +28,9 @@ function questionType() {
 
 // Vibrate
 function startVibrate(level) {
-    navigator.vibrate(level);
+    if ("vibrate" in navigator) { // If vibration is supported
+        navigator.vibrate(level);
+    }
 }
 // Vibrate - END
 
@@ -234,7 +236,7 @@ function timer() {
     }).addListener(function (unit, amount, total) {
         if (total < 1) {
             $("#DateCountdown").TimeCircles().stop();
-            //startVibrate(50);
+            startVibrate(100);
             saveScore();
             $(".overlay").fadeIn();
             $("body").addClass("blur");
