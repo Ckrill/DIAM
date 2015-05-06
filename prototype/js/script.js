@@ -359,7 +359,7 @@ function answerChecker() {
 // Start game
 function startGame(){
     $("body").addClass("gameStart");
-    $(".intro").delay(200).fadeOut();
+    $(".intro, .guideOverlay").delay(200).fadeOut();
     timer();
 }
 // Start game - END
