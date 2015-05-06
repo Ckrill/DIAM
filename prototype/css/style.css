@@ -281,7 +281,7 @@ canvas {
     position: absolute;
     font-size: 2em;
     top: 100px;
-    background: rgba(255,255,255,0.9);
+    background: white;
     left: calc(50% - 150px);
 }
 .guideOverlay__text.moveDown{
