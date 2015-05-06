@@ -385,7 +385,8 @@ function nextTip() {
     if (tipNumber > 5){
         $(".tips").css("opacity","1");
         $('.slide-container').slick("slickSetOption", "speed", "1500");
-        $('.slide-container').slick("slickGoTo", 2);
+        var correctIndex = $(".page.correct").index(".page");
+        $('.slide-container').slick("slickGoTo", correctIndex);
         $('.slide-container').slick("slickSetOption", "speed", "300");
         //$(".intro").fadeIn();
     }
