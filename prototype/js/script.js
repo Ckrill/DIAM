@@ -143,6 +143,7 @@ function whichActor() {
                     } else {
                         $('.answer.left').html("<p>" + actorAlt + "</p>");
                     }
+                    $("div[data-slick-index='1'] > *").fadeIn();
                     return; // Chris: Hvorfor er der et "return" i denne funktion og ikke i den ovenover?
                 });
             }
@@ -193,6 +194,7 @@ function whichMovie() {
             setAnswer("right", year);
             $('.answer.left').html("<p>" + yearAlt + "</p>");
         }
+        $("div[data-slick-index='1'] > *").fadeIn();
     });
 }
 // Question type: What year - END
@@ -319,7 +321,7 @@ function resetSliderPage() {
 // - and then fade them in
 function hideQuestion() {    // 
 //    console.info("Hide, then fade in");
-    $("div[data-slick-index='1'] > *").hide().fadeIn(); // Den fader ind før vi er færdige med at hente data fra db, så den blinker nogle gange, især på dårligt net.
+    $("div[data-slick-index='1'] > *").hide(); // Den fader ind før vi er færdige med at hente data fra db, så den blinker nogle gange, især på dårligt net.
 }
 // Hide question and answer options - END
 
