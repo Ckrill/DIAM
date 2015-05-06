@@ -20,7 +20,7 @@ body {
     padding: 0;
     margin: 0;
     font-size: 100%;
-    background-color: beige;
+    background-color: #f1c40f;
     -webkit-transition: background 0.4s; /* Safari */
     transition: background 0.4s;
 }
@@ -59,6 +59,11 @@ body.blur .wrapper {
     bottom: 15px;
     left: 85px;
 }
+.button#start {
+    color: #f1c40f;
+}
+
+
 body.falseBg {
     background-color: #e74c3c;
 }
@@ -107,7 +112,6 @@ body.correctBg .answers { /* Temporary test */
 .answers {
     position: relative;
     width: 100%;
-/*    height: 70%;*/
     max-height: 50;
 }
 .answer {
@@ -124,7 +128,6 @@ body.correctBg .answers { /* Temporary test */
 }
 .answer p {
     margin: 1rem 10%;
-/*    word-spacing: 30000px; /* Forced word-wrap fix */
     font-size: 2em;
     width: 80%;
 }
@@ -152,17 +155,9 @@ body.correctBg .answers { /* Temporary test */
 
 /* Feedback */
 .feedback div {
-/*    font-size: 3em;*/
     position: relative;
     height: 100%;
     width: 100%;
-/*
-    text-align: center;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-*/
 }
 .answered .correct {
 }
@@ -198,6 +193,7 @@ canvas {
     opacity: 0.6;
 }
 /* Countdown timer - END */
+
 /* Score */
 .score {
     font-family: 'Century Gothic', Arial;
@@ -248,7 +244,7 @@ canvas {
     height: 100%;
     top: 0;
     left: 0;
-    background: beige;
+    background: #f1c40f;
     font-size: 2em;
     text-align: center;
     padding: 0 calc(50% - 200px);
@@ -266,8 +262,8 @@ canvas {
 .time_circles > div > span {
         line-height: 10px!important;
     }
+
 @media (min-width: 768px) {
-    
     .answer p, .answer.left:before,.answer.right:before, .question p{
           font-size: 2.5em;
     }
