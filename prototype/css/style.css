@@ -40,7 +40,7 @@ body.blur .wrapper {
     background: black;
     cursor: pointer;
     display: inline-block;
-    padding: 17px;
+    padding: 15px;
     width: 130px;
     text-align: center;
     margin: 10px;
@@ -54,11 +54,17 @@ body.blur .wrapper {
     border: 2px solid black;
     color: black;
     background: none;
-    padding: 15px;
+    padding: 13px;
     width: auto;
     bottom: 15px;
     left: 85px;
 }
+
+.ghost:hover  {
+    background: black;
+    color: #f1c40f;
+}
+
 .button#start {
     color: #f1c40f;
 }
@@ -284,10 +290,12 @@ canvas {
     background: white;
     left: calc(50% - 150px);
 }
-
+.guideOverlay__text .button {
+    margin: 30px 0 0 0 ;
+}
 .guideOverlay__text.tip1{
     left: 10px;
-    top: 61px;
+    top: 66px;
 }
 
 .guideOverlay__text.tip2{
