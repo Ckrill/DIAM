@@ -438,10 +438,14 @@ $(window).resize(function () {
 // Arrow keys
 $(document).keyup(function (e) {
 	if(e.which == 37) { // Left
-        $('.slide-container').slick("slickGoTo", 2);
+        if (!tutorialMode) {
+            $('.slide-container').slick("slickGoTo", 2);
+        }
 	}
 	if(e.which == 39) { // Right
-        $('.slide-container').slick("slickGoTo", 0);
+        if (!tutorialMode) {
+            $('.slide-container').slick("slickGoTo", 0);
+        }
 	}
 });
 // Arrow keys - END
