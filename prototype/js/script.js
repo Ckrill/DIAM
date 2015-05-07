@@ -3,8 +3,10 @@
 /*jslint plusplus: true */
 
 // Variables
+var tutorialMode,
+    
 // Options
-var correctAnswerClass = "correct",
+    correctAnswerClass = "correct",
     falseAnswerClass = "false",
 
 // JSON
@@ -203,7 +205,9 @@ function whichMovie() {
 var score = 0;
 function scoreCounter() {
     score = score + 1;
-    changeTime(2);
+    if (!tutorialMode) {
+        changeTime(2);
+    }
     $("#score").text(score);
 }
 // Score counter - END
@@ -359,14 +363,15 @@ function answerChecker() {
 // Check answer - END
 
 // Start game
-function startGame(){
+function startGame() {
     $("body").addClass("gameStart");
     $(".intro, .guideOverlay").delay(200).fadeOut();
     timer();
 }
 // Start game - END
 
-function startGuide(){
+function startGuide() {
+    tutorialMode = true;
     $(".intro").delay(200).fadeOut();
     timer();
     setTimeout(function() {
@@ -377,6 +382,9 @@ function startGuide(){
     /* Tooltipstuff here */
 }
 
+function tutorialEnd() {
+    tutorialMode = false;
+};
 
 var tipNumber = 1;
 function nextTip() {
