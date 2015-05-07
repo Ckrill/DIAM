@@ -339,7 +339,7 @@ canvas {
     height: 0;
     border: inset 14px;
     border-color: transparent transparent #FFFFFF transparent;
-    border-style: solid;
+    border-bottom-style: solid;
     position: absolute;
     top: -28px;
     left: 10px;
