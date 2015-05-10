@@ -349,7 +349,9 @@ function answerChecker() {
                 changeTime(-4);
             }
             questionReset();
-            questionType();
+            if (!tutorialMode) {
+                questionType();
+            }
         }
     });
     $('.slide-container').on('afterChange', function (event, slick) {
@@ -410,14 +412,34 @@ function answerHeight() {
 }
 // Answer height - END
 
+// Click
+function clickEvents() {
+    $("#start").click(function () {
+        startGame();
+    });
+    $("#guide").click(function () {
+        startGuide();
+    });
+    $(".guideOverlay__text:not(.tip5)").click(function () {
+        nextTip();
+        console.info("test");
+    });
+    $(".guideOverlay__text.tip5").click(function () {
+        tutorialEnd();
+        resetGame();
+        startGame();
+    });
+}
+// Click - END
+
 // Ready
 $(document).ready(function () {
     initiateSlide();
     setSlideHeight();
     resetSliderPage();
     questionType();
-    
     answerChecker();
+    clickEvents();
 });
 
 // Ready - END

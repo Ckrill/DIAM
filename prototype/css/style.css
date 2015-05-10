@@ -64,6 +64,13 @@ body.blur .wrapper {
     background: black;
     color: #f1c40f;
 }
+.guideOverlay__text:hover .ghost {
+    background: black;
+    color: #f1c40f;
+}
+.guideOverlay__text:hover {
+    cursor: pointer;
+}
 
 .button#start {
     color: #f1c40f;
