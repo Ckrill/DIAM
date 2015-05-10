@@ -244,7 +244,7 @@ function timer() {
             },
             "Seconds": {
                 "text": "",
-                "color": "#333",
+                "color": "rgba(0, 0, 0, 0.4)",
                 "show": true
             }
 

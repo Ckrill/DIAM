@@ -98,7 +98,7 @@ body.correctBg .answers { /* Temporary test */
 /*    height: 30%;*/
     min-height: 50%;
     text-align: center;
-    padding: 5rem 4rem 0 4rem;
+    padding: 80px 4rem 0 4rem;
     box-sizing: border-box;
     color: rgba(0, 0, 0, .7);
     
@@ -150,9 +150,9 @@ body.correctBg .answers { /* Temporary test */
     font-family: 'icomoon';
     font-size: 2em;
     position: relative;
-    top: 13px;
     padding: 10px;
     display: block;
+    line-height: .5em;
     color: rgba(0, 0, 0, .4);
 }
 .answer.left p:before {
