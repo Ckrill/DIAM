@@ -38,8 +38,7 @@ function startVibrate(level) {
 
 // Reset feedback
 function feedbackReset() {
-    $('.feedback, .answer').removeClass(correctAnswerClass);
-    $('.feedback').removeClass(falseAnswerClass);
+    $('.feedback, .answer').removeClass(correctAnswerClass + " " + falseAnswerClass);
 }
 // Reset feedback - END
 
