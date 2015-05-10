@@ -20,7 +20,9 @@ body {
     padding: 0;
     margin: 0;
     font-size: 100%;
-    background-color: #f1c40f;
+    color: rgba(0,0,0,.75);
+/*    background-color: #f1c40f;*/
+    background-color: #DFBA54;
     -webkit-transition: background 0.4s; /* Safari */
     transition: background 0.4s;
 }
@@ -36,8 +38,8 @@ body.blur .wrapper {
     transition: 0.4s -webkit-filter linear;
 }
 .button {
-    color: white;
-    background: black;
+    color: #eee;
+    background: #222;
     cursor: pointer;
     display: inline-block;
     padding: 15px;
@@ -51,8 +53,8 @@ body.blur .wrapper {
     left: 75px;
 }
 .button.ghost  {
-    border: 2px solid black;
-    color: black;
+    border: 2px solid #333;
+    color: #222;
     background: none;
     padding: 13px;
     width: auto;
@@ -60,31 +62,28 @@ body.blur .wrapper {
     left: 85px;
 }
 
-.ghost:hover  {
-    background: black;
-    color: #f1c40f;
+.ghost:hover {
+    background: #222;
+    border-color: #222;
+    color: #DFBA54;
 }
-.guideOverlay__text:hover .ghost {
-    background: black;
-    color: #f1c40f;
+.guideOverlay .ghost:hover {
+    color: #eee;
 }
-.guideOverlay__text:hover {
-    cursor: pointer;
-}
-
 .button#start {
-    color: #f1c40f;
+    color: #DFBA54;
 }
-
 
 body.falseBg {
-    background-color: #e74c3c;
+/*    background-color: #e74c3c;*/
+    background-color: #CA553A;
 }
 body.falseBg .answers { /* Temporary test */
 /*    background-color: #c0392b;*/
 }
 body.correctBg {
-    background-color: #2ecc71;
+/*    background-color: #2ecc71;*/
+    background-color: #569362;
 }
 body.correctBg .answers { /* Temporary test */
 /*    background-color: #27ae60;*/
@@ -146,25 +145,23 @@ body.correctBg .answers { /* Temporary test */
 }
 .answer.left {
 }
-.answer.left p:before {
+.answer.left p:before,
+.answer.right p:before {
     font-family: 'icomoon';
-    content: "\e601";
     font-size: 2em;
     position: relative;
     top: 13px;
     padding: 10px;
     display: block;
+    color: rgba(0, 0, 0, .4);
+}
+.answer.left p:before {
+    content: "\e601";
 }
 .answer.right {
 }
 .answer.right p:before{
-    font-family: 'icomoon';
     content: "\e600";
-    font-size: 2em;
-    position: relative;
-    top: 13px;
-    padding: 10px;
-    display: block;
 }
 /* Answer - END */
 
@@ -229,7 +226,7 @@ canvas {
     position: absolute;
     top: calc(50% - 150px);
     left: calc(50% - 150px);
-    background: white;
+    background: #eee;
     width: 300px;
     height: 300px;
     padding: 15px;
@@ -250,7 +247,7 @@ canvas {
     height: 100%;
     top: 0;
     left: 0;
-    background: #f1c40f;
+    background: #DFBA54;
     font-size: 2em;
     text-align: center;
 }
@@ -293,7 +290,7 @@ canvas {
     position: absolute;
     font-size: 2em;
     top: 100px;
-    background: white;
+    background: #eee;
     left: calc(50% - 150px);
 }
 .guideOverlay__text .button {
@@ -328,7 +325,7 @@ canvas {
     left: 135px;
     top: auto;
     bottom: -28px;
-    border-color: #FFFFFF transparent transparent transparent;
+    border-color: #eee transparent transparent transparent;
 }
 .guideOverlay__text.tip5{
     left: calc(50% - 150px);
@@ -344,7 +341,7 @@ canvas {
     width: 0;
     height: 0;
     border: inset 14px;
-    border-color: transparent transparent #FFFFFF transparent;
+    border-color: transparent transparent #eee transparent;
     border-style: solid;
     position: absolute;
     top: -28px;
