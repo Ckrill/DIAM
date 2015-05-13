@@ -350,4 +350,9 @@ canvas {
     z-index: 89;
 }
 
-/* Intro - END */
+.no-touch .left p:before{
+    content: "\e600";
+}
+.no-touch .right p:before{
+    content: "\e601";
+}

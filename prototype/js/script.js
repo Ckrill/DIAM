@@ -401,6 +401,14 @@ function nextTip() {
         $('.slide-container').slick("slickSetOption", "speed", "300");
     }
 }
+function touchCheck() {
+    if (Modernizr.touch) { 
+        alert('Touch Screen');
+    } else { 
+        alert('No Touch Screen');
+    }
+}
+
 
 // Answer height
 function answerHeight() {
@@ -440,6 +448,7 @@ $(document).ready(function () {
     questionType();
     answerChecker();
     clickEvents();
+    touchCheck();
 });
 
 // Ready - END
