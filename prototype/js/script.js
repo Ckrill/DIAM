@@ -17,7 +17,6 @@ var tutorialMode,
 
 // Question type
 function questionType() {
-//    console.info("Rolling for new question!");
     flag = flag + 1;
     if (flag > 3) {
         flag = 0;
@@ -44,7 +43,6 @@ function feedbackReset() {
 
 // Reset question
 function questionReset() {
-//    console.info("Reset question");
     $('.question, .answer').html("");
 }
 // Reset question - END
@@ -58,10 +56,8 @@ function setAnswer(correctAnswer, actor) {
         falseAnswer = "left";
     }
     $('.answer.' + correctAnswer).html("<p>" + actor + "</p>");
-//    $('.answer.' + correctAnswer).addClass(correctAnswerClass);
     $('.feedback.' + correctAnswer + ', .answer.' + correctAnswer).addClass(correctAnswerClass);
     $('.feedback.' + falseAnswer).addClass(falseAnswerClass);
-    console.info("Correct is " + correctAnswer);
 }
 // Set answer - END
 
@@ -69,18 +65,17 @@ function setAnswer(correctAnswer, actor) {
 function whichActor() {
     $("body").removeClass("whichMovie");
     var mode = 'movie/top_rated?',
-        TopMovieRange = 1000, // Top 1000?
-        minimumVotes = 200,  // Minimum 150 votes (Det tager lidt tid før nyere film kommer derop.)
-        page = "&page=" + Math.floor((Math.random() * (TopMovieRange / 20)) + 1), // Dataen er delt op i "sider" (json filer), med 20 film i hver.
+        TopMovieRange = 1000, // Top 1000
+        minimumVotes = 200,  // Minimum 150 votes
+        page = "&page=" + Math.floor((Math.random() * (TopMovieRange / 20)) + 1), 
         url = tmdb + mode + page + key;
     $.getJSON(url, function (json) {
-//        console.log(json);
         function randomMovie() {
-            var voteCount = json.results[[0]].vote_count, // Chris: Jeg satte "var" ind i starten af denne linje, var det ikke rigtigt at det manglede?
+            var voteCount = json.results[[0]].vote_count,
                 title = json.results[[0]].title,
                 arr = [];
             while (arr.length < 2) {
-                var randomNumber = Math.ceil(Math.random() * 19), // hmmm
+                var randomNumber = Math.ceil(Math.random() * 19), 
                     found = false,
                     i;
                 for (i = 0; i < arr.length; i++) {
@@ -94,8 +89,8 @@ function whichActor() {
                 }
             }
             var idMovie = json.results[arr[0]].id,
-                voteCount = json.results[arr[0]].vote_count, // Chris: Den er allerede defineret, skal den bare opdateres eller fjernes?
-                title = json.results[arr[0]].title, // Chris: Den er allerede defineret, skal den bare opdateres eller fjernes?
+                voteCount = json.results[arr[0]].vote_count, 
+                title = json.results[arr[0]].title,
                 idAltMovie = json.results[arr[1]].id;
 
             if (voteCount < minimumVotes) {
@@ -103,12 +98,10 @@ function whichActor() {
                 return;
             } else {
                 var randomNumber = Math.round(Math.random());
-//                $('#title').text(title);
                 var mode = 'movie/' + idMovie + "/credits",
                     key = '?api_key=83b296315507b7ea0ccdcc536a5ab745',
                     urlById = tmdb + mode + key;
                 $.getJSON(urlById, function (json) { // Get movie
-//                    console.log(json);
                     var actor = json.cast[0].name,
                         character = json.cast[0].character;
                     feedbackReset();
@@ -136,7 +129,6 @@ function whichActor() {
                 var mode = 'movie/' + idAltMovie + "/credits",
                     urlByIdAlt = tmdb + mode + key;
                 $.getJSON(urlByIdAlt, function (json) { // Get alternative movie
-//                    console.log(json);
                     var actorAlt = json.cast[0].name;
                     // Inset false answer
                     if (randomNumber === 1) {
@@ -145,7 +137,7 @@ function whichActor() {
                         $('.answer.left').html("<p>" + actorAlt + "</p>");
                     }
                     $("div[data-slick-index='1'] > *").fadeIn();
-                    return; // Chris: Hvorfor er der et "return" i denne funktion og ikke i den ovenover?
+                    return; 
                 });
             }
         }
@@ -161,10 +153,9 @@ function whichMovie() {
         page = '&page=1',
         currentYear = new Date().getFullYear(),
         year = Math.floor(Math.random() * (currentYear - (currentYear - 20) + 1) + (currentYear - 20)),
-        query = "&primary_release_year=" + year + ".desc&sort_by=popularity.desc", // Dataen er delt op i "sider" (json filer), med 20 film i hver.    
+        query = "&primary_release_year=" + year + ".desc&sort_by=popularity.desc", 
         urlMovie = tmdb + mode + page + key + query;
     $.getJSON(urlMovie, function (json) {
-//        console.log(json);
         var randomNumber = Math.floor(Math.random() * (19 - 0 + 1)) + 0,
             title = json.results[randomNumber].title,
             range = 1,
@@ -265,7 +256,7 @@ function timer() {
 // Timer - END
 
 // Reset game
-function resetGame() {    // 
+function resetGame() {   
     questionType();
     $("#DateCountdown").data('timer', 100).TimeCircles().restart();
     $("body").removeClass("blur");
@@ -320,14 +311,12 @@ function setSlideHeight() {
 // Return slider to question page
 function resetSliderPage() {
     $('.slide-container').on('afterChange', function (event, slick, direction) {
-//        console.log("Direction: " + direction);
         var currentSlide = $('.slide-container').slick("slickCurrentSlide");
         if (currentSlide !== 1) {
             setTimeout(function () {
                 $('.slide-container').slick("slickSetOption", "speed", "0");
                 $('.slide-container').slick("slickGoTo", 1);
                 $('.slide-container').slick("slickSetOption", "speed", "300");
-//                console.log("Going back to the middle slide!");
             }, 100);
         }
     });
@@ -337,7 +326,6 @@ function resetSliderPage() {
 // Hide question and answer options
 // - and then fade them in
 function hideQuestion() {    // 
-//    console.info("Hide, then fade in");
     $("div[data-slick-index='1'] > *").hide(); // Den fader ind før vi er færdige med at hente data fra db, så den blinker nogle gange, især på dårligt net.
 }
 // Hide question and answer options - END
@@ -394,7 +382,6 @@ function startGuide() {
     },50);
     $(".guideOverlay").fadeIn();
     nextTip();
-    /* Tooltipstuff here */
 }
 
 function tutorialEnd() {
@@ -447,7 +434,6 @@ function clickEvents() {
     });
     $(".guideOverlay__text:not(.tip5)").click(function () {
         nextTip();
-        console.info("test");
     });
     $(".guideOverlay__text.tip5").click(function () {
         tutorialEnd();

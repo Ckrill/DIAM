@@ -1,15 +1,173 @@
-@import url("timeCircles.css");
-@import url("slick.css");
-@import url("icons.css");
 
+/* Time Circle CSS */
+.time_circles {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.time_circles > div {
+    position: absolute;
+    text-align: center;
+}
+.time_circles > div > h4 {
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Century Gothic', Arial;
+}
+.time_circles > div > span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Century Gothic', Arial;
+    font-size: 300%;
+    margin-top: 6px;
+    font-weight: bold;
+}
+/* Time Circle CSS - END*/
+
+/*Slider CSS*/
+.slick-slider{
+    position: relative;
+
+    display: block;
+
+    -moz-box-sizing: border-box;
+         box-sizing: border-box;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list{
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus{
+    outline: none;
+}
+.slick-list.dragging{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+}
+.slick-track:before,
+.slick-track:after {
+    display: table;
+    content: '';
+}
+.slick-track:after{
+    clear: both;
+}
+.slick-loading .slick-track{
+    visibility: hidden;
+}
+
+.slick-slide{
+    display: none;
+    float: left;
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide{
+    float: right;
+}
+.slick-slide img{
+    display: block;
+}
+.slick-slide.slick-loading img{
+    display: none;
+}
+.slick-slide.dragging img{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide{
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+}
+/*Slider CSS - END*/
+
+/* Icon CSS */
+@font-face {
+	font-family: 'icomoon';
+	src:url('../img/icomoon.eot?3lgz5z');
+	src:url('../img/icomoon.eot?#iefix3lgz5z') format('embedded-opentype'),
+		url('../img/icomoon.woff?3lgz5z') format('woff'),
+		url('../img/icomoon.ttf?3lgz5z') format('truetype'),
+		url('../img/icomoon.svg?3lgz5z#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-left:before {
+	content: "\e600";
+}
+
+.icon-arrow-right:before {
+	content: "\e601";
+}
+/* Icon CSS - END*/
+
+/*Core CSS */
 *{
     box-sizing: border-box;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+         -o-user-select: none;
+            user-select: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);	
 }
 html {
@@ -18,13 +176,12 @@ html {
 body {
     font-size: 16px; 
     font-family: 'Source Sans Pro', sans-serif;
-    padding: 0;
-    margin: 0;
+    padding: 0; /* normalize */
+    margin: 0; /* normalize */
     font-size: 100%;
     color: rgba(0,0,0,.75);
-/*    background-color: #f1c40f;*/
     background-color: #DFBA54;
-    -webkit-transition: background 0.4s; /* Safari */
+    -webkit-transition: background 0.4s; 
     transition: background 0.4s;
 }
 body.blur .wrapper {
@@ -35,7 +192,6 @@ body.blur .wrapper {
     position: absolute;
     height: 100%;
     width: 100%;
-    
     transition: 0.4s -webkit-filter linear;
 }
 .button {
@@ -53,7 +209,7 @@ body.blur .wrapper {
     bottom: 15px;
     left: 75px;
 }
-.button.ghost  {
+.button.ghost {
     border: 2px solid #333;
     color: #222;
     background: none;
@@ -62,7 +218,6 @@ body.blur .wrapper {
     bottom: 15px;
     left: 85px;
 }
-
 .ghost:hover {
     background: #222;
     border-color: #222;
@@ -74,42 +229,32 @@ body.blur .wrapper {
 .button#start {
     color: #DFBA54;
 }
-
 body.falseBg {
-/*    background-color: #e74c3c;*/
     background-color: #CA553A;
 }
-body.falseBg .answers { /* Temporary test */
-/*    background-color: #c0392b;*/
-}
+
 body.correctBg {
-/*    background-color: #2ecc71;*/
     background-color: #569362;
 }
-body.correctBg .answers { /* Temporary test */
-/*    background-color: #27ae60;*/
-}
+
+/*Core CSS -END */
 
 /* Question */
 .question {
     position: relative;
     width: 100%;
-/*    height: 30%;*/
     min-height: 50%;
     text-align: center;
     padding: 80px 4rem 0 4rem;
     box-sizing: border-box;
     color: rgba(0, 0, 0, .7);
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: table;
 }
-
 .question p {
-/*    margin: 3rem;*/
     margin: 0;
     font-size: 2em;
+    display: table-cell;
+    vertical-align: middle;
 }
 .question #character,
 .question #title,
@@ -132,17 +277,14 @@ body.correctBg .answers { /* Temporary test */
     float: left;
     text-align: center;
     cursor: pointer;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: table;
 }
 .answer p {
     margin: 1rem 10%;
     font-size: 2em;
     width: 80%;
-}
-.answer.left {
+    display: table-cell;
+    vertical-align: middle;
 }
 .answer.left p:before,
 .answer.right p:before {
@@ -160,10 +302,9 @@ body.correctBg .answers { /* Temporary test */
 .answer.right p:before{
     content: "\e600";
 }
-
 .answer.left:hover p:before,
 .answer.right:hover p:before {
-    color: rgba(0, 0, 0, .7);;
+    color: rgba(0, 0, 0, .7);
 }
 /* Answer - END */
 
@@ -173,15 +314,8 @@ body.correctBg .answers { /* Temporary test */
     height: 100%;
     width: 100%;
 }
-
 .whichMovieparagraf {
     display: none;   
-}
-.whichMovie .whichMovieparagraf {
-    display: block;
-}
-.whichMovie .whichActorparagraf {
-    display: none;
 }
 /* Feedback - END */
 
@@ -194,9 +328,6 @@ body.correctBg .answers { /* Temporary test */
 canvas {
     opacity: 0.6;
 }
-/* Countdown timer - END */
-
-/* Score */
 .score {
     font-family: 'Century Gothic', Arial;
     font-weight: bold;
@@ -204,13 +335,13 @@ canvas {
     position: fixed;
     top: 0;
     left: 0;
-    padding: 13px;
+    padding: 22px;
 }
 .score #score + span {
     font-size: 0.5em;
     font-weight: 300;
 }
-/* Score - END */
+/* Countdown timer - END */
 
 /* Popup */
 .overlay {
@@ -231,7 +362,6 @@ canvas {
     padding: 15px;
     font-size: 2em;
     text-align: center; 
-    
 }
 #popupscore {
     font-size: 0.8em;
@@ -261,20 +391,7 @@ canvas {
     transform: scale(1.1) rotate(-15deg);
 } 
 .time_circles > div > span {
-        line-height: 10px!important;
-    }
-
-@media (min-width: 768px) {
-    .answer p, .answer.left:before,.answer.right:before, .question p{
-          font-size: 2.5em;
-    }
-    .score{
-        font-size: 3em;
-    }
-    .time_circles > div > span {
-        font-size: 2.4em!important;
-        line-height: 11px!important;
-    }
+    line-height: 10px!important;
 }
 .guideOverlay{
     position: absolute;
@@ -296,12 +413,11 @@ canvas {
     margin: 30px 0 0 0 ;
 }
 .guideOverlay__text.tip1{
-    left: 10px;
-    top: 66px;
+    left: 14px;
+    top: 68px;
 }
-
 .guideOverlay__text.tip2{
-    left: calc(100% - 310px);
+    left: calc(100% - 315px);
     top: 90px;
 }
 .guideOverlay__text.tip2:before{
@@ -333,7 +449,6 @@ canvas {
 .guideOverlay__text.tip5:before{
     display: none;
 }
-
 .guideOverlay__text:before{
     content: "";
     display: block;
@@ -347,14 +462,12 @@ canvas {
     left: 10px;
     z-index: 89;
 }
-
 .no-touch .left p:before{
     content: "\e600";
 }
 .no-touch .right p:before{
     content: "\e601";
 }
-
 .desktopText {
     display: inline;
 }
@@ -367,4 +480,28 @@ canvas {
 }
 .touch .desktopText {
     display: none;
+}
+/* Intro -END */
+@media (min-width: 768px) {
+    .answer p, .answer.left:before,.answer.right:before, .question p{
+        font-size: 2.5em;
+    }
+    .score{
+        font-size: 3em;
+    }
+    .time_circles > div > span {
+        font-size: 2.4em!important;
+        line-height: 11px!important;
+    }
+    .score, #DateCountdown {
+        margin: 2rem;
+    }
+    .guideOverlay__text.tip1{
+        left: 38px;
+        top: 95px;
+    }
+    .guideOverlay__text.tip2{
+        left: calc(100% - 335px);
+        top: 110px;
+    }    
 }
