@@ -465,6 +465,7 @@ $(window).scroll(function () {
 // Resize
 $(window).resize(function () {
     setSlideHeight();
+    answerHeight();
 });
 // Resize - END
 

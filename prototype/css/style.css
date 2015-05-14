@@ -243,6 +243,7 @@ body.correctBg {
 .question {
     position: relative;
     width: 100%;
+    height: 1%;
     min-height: 50%;
     text-align: center;
     padding: 80px 4rem 0 4rem;
