@@ -89,8 +89,6 @@ body.correctBg {
 body.correctBg .answers { /* Temporary test */
 /*    background-color: #27ae60;*/
 }
-.page {
-}
 
 /* Question */
 .question {
@@ -133,7 +131,7 @@ body.correctBg .answers { /* Temporary test */
     height: 100%;
     float: left;
     text-align: center;
-    cursor: col-resize;
+    cursor: pointer;
     
     display: flex;
     flex-direction: column;
@@ -159,10 +157,13 @@ body.correctBg .answers { /* Temporary test */
 .answer.left p:before {
     content: "\e601";
 }
-.answer.right {
-}
 .answer.right p:before{
     content: "\e600";
+}
+
+.answer.left:hover p:before,
+.answer.right:hover p:before {
+    color: rgba(0, 0, 0, .7);;
 }
 /* Answer - END */
 
@@ -172,10 +173,7 @@ body.correctBg .answers { /* Temporary test */
     height: 100%;
     width: 100%;
 }
-.answered .correct {
-}
-.answered .false {
-}
+
 .whichMovieparagraf {
     display: none;   
 }
@@ -355,4 +353,18 @@ canvas {
 }
 .no-touch .right p:before{
     content: "\e601";
+}
+
+.desktopText {
+    display: inline;
+}
+.touchText {
+    display: none;
+}
+
+.touch .touchText {
+    display: inline;
+}
+.touch .desktopText {
+    display: none;
 }
